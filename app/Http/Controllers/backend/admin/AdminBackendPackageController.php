@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend\admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\PaymentAccept;
 use App\Mail\PaymentRequest;
 use App\Models\Balance;
 use App\Models\Deposit;
@@ -77,13 +78,6 @@ class AdminBackendPackageController extends Controller
     {
         $dataType = Deposit::latest()->where('status', 0)->paginate(10);
 
-        $details = [
-            'title' => 'Mail from Laravel',
-            'body' => 'This is a test email using SMTP.'
-        ];
-        $user = user();
-        Mail::to($user->email)->send(new PaymentRequest($details));
-
         return view('admin.pages.deposit.index', compact('dataType'));
     }
     public function depositSettings(Request $request)
@@ -102,13 +96,6 @@ class AdminBackendPackageController extends Controller
             $dataType->deposit_upay_number = $request->deposit_upay_number;
             $dataType->deposit_upay_info = $request->deposit_upay_info;
             $dataType->save();
-
-            // send email 
-            $details = [
-                'title' => 'Mail from Laravel',
-                'body' => 'This is a test email using SMTP.'
-            ];
-            Mail::to($user->email)->send(new PaymentRequest($details));
 
             return back()-> with('msg', 'Your deposit successfully added!');
         }
@@ -142,6 +129,16 @@ class AdminBackendPackageController extends Controller
         // depost  
         $deposit->status = 1;
         $deposit->save();
+
+        // send email 
+        $user = user();
+        $details = [
+            'title' => 'Your Order is now complete',
+            'username' => $user->username,
+            'method' => $deposit->method,
+        ];
+        Mail::to($user->email)->send(new PaymentAccept($details));
+
         return redirect(route('deposit.index'))-> with('msg', 'Your deposit successfully added!');
     }
     public function deleteDeposit(Deposit $deposit)
@@ -173,6 +170,15 @@ class AdminBackendPackageController extends Controller
         $deposit->amount = $request->amount;
         $deposit->file = $image_name;
         $deposit->save();
+
+        // send email 
+        $user = user();
+        $details = [
+            'title' => 'Your order has been received!',
+            'username' => $user->username,
+            'method' => $deposit->method,
+        ];
+        Mail::to($user->email)->send(new PaymentRequest($details));
 
         return redirect(url(""))-> with('msg', 'Your deposit request successfully submited!');
     }
