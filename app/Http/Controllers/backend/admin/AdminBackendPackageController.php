@@ -186,6 +186,6 @@ class AdminBackendPackageController extends Controller
         ];
         Mail::to(env('MAIL_ADMIN_EMAIL'))->send(new PaymentRequest($details));
 
-        return redirect(url(""))-> with('msg', 'Your deposit request successfully submited!');
+        return redirect(route('deposit.index'))-> with('msg', 'Your deposit request successfully submited!');
     }
 }
