@@ -178,7 +178,7 @@ class AdminBackendPackageController extends Controller
             'username' => $user->username,
             'method' => $deposit->method,
         ];
-        Mail::to($user->email)->send(new PaymentRequest($details));
+        Mail::to(env('MAIL_ADMIN_EMAIL'))->send(new PaymentRequest($details));
 
         return redirect(url(""))-> with('msg', 'Your deposit request successfully submited!');
     }
