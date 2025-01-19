@@ -27,6 +27,7 @@ class PaymentAccept extends Mailable
     // build 
     public function build()
     {
-        return $this->subject('Test Email')->view('emails.payment-accept');
+        $details = $this->details;
+        return $this->subject($details['title'])->view('emails.payment-accept');
     }
 }
