@@ -26,7 +26,16 @@
         <!-- Navigation-->
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-            <a class="navbar-brand" href="">Admin Panel</a>
+            <a class="navbar-brand" href="">
+                Admin Panel
+                <a class="nav-link  mr-lg-2" href="{{ route("deposit.process") }}">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span class="text-light">Balance: 
+                        <span class="badge badge-pill badge-primary">{{ \App\Models\users::where('username', session()->get('username'))->first()->balance; }} BDT</span>
+                        <i class="fa-solid fa-plus text-light"></i>
+                    </span>
+                </a>
+            </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
@@ -91,6 +100,9 @@
                                     <a style="{{Route::is('settings.admin_login_page_web') ? 'color: green !important' : ''}}" href="{{route('settings.admin_login_page_web')}}">Login Page</a></a>
                                 </li>
                                 <li>
+                                    <a style="{{Route::is('settings.admin_contact_web') ? 'color: green !important' : ''}}" href="{{route('settings.admin_contact_web')}}">Contact US</a></a>
+                                </li>
+                                <li>
                                     <a style="{{Route::is('deposit.settings') ? 'color: green !important' : ''}}" href="{{route('deposit.settings')}}">Deposit</a></a>
                                 </li>
                             </ul>
@@ -104,12 +116,20 @@
                             </a>
                         </li>
 
-                        {{-- Deposit   --}}
-                        <li class="nav-item {{Route::is('deposit.index') ? 'active' : ''}}" data-toggle="tooltip" data-placement="right" title="AllUsers">
-                            <a class="nav-link {{Route::is('deposit.index') ? 'active' : ''}}" href="{{ route('deposit.index') }}" >
+                        {{-- settings  --}}
+                        <li class="nav-item {{Route::is('deposit.*') ? 'active' : ''}}" data-toggle="tooltip" data-placement="right" title="Deposit">
+                            <a class="nav-link nav-link-collapse {{Route::is('deposit.*') ? 'active' : ''}}" data-toggle="collapse" href="#collapseDeposit" data-parent="#exampleAccordion">
                                 <i class="fa-solid fa-gamepad"></i>
                                 <span class="nav-link-text">Deposit</span>
                             </a>
+                            <ul class="sidenav-second-level  {{Route::is('deposit.*') ? 'show' : 'collapse'}}" id="collapseDeposit">
+                                <li>
+                                    <a style="{{Route::is('deposit.index') ? 'color: green !important' : ''}}" href="{{ route('deposit.index') }}">Pending</a></a>
+                                </li>
+                                <li>
+                                    <a style="{{Route::is('deposit.success') ? 'color: green !important' : ''}}" href="{{ route('deposit.success') }}">Success</a></a>
+                                </li>
+                            </ul>
                         </li>
                     @endif
 
@@ -125,17 +145,6 @@
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
-
-                    <li class="nav-item">
-                        <a class="nav-link  mr-lg-2" href="{{ route("deposit.process") }}">
-                            <i class="fa-solid fa-wallet"></i>
-                            <span class="">Balance: 
-                              <span class="badge badge-pill badge-primary">{{ \App\Models\users::where('username', session()->get('username'))->first()->balance; }} BDT</span>
-                              <i class="fa-solid fa-plus text-light"></i>
-                            </span>
-                        </a>
-                    </li>
-
                     <li class="nav-item">
                         <form class="form-inline my-2 my-lg-0 mr-lg-2">
                             <div class="input-group">

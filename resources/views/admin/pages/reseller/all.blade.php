@@ -26,6 +26,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Username</th>
+                        <th>Balance</th>
                         <th>Expired date</th>
                         <th>Action</th>
                     </tr>
@@ -35,6 +36,7 @@
                         <tr>
                             <td>{{ $item['id'] }}</td>
                             <td>{{ $item['username'] }}</td>
+                            <td>{{ $item['balance'] }}</td>
                             <td>
                                 {{ !empty($item->expired_format['months']) ? $item->expired_format['months']."Mo" : "" }}
                                 {{ !empty($item->expired_format['days']) ? $item->expired_format['days']."d" : "" }}

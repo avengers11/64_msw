@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>Responsive Payment Form</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
         <style>
@@ -41,6 +42,7 @@
             .flex-between {
                 display: flex;
                 justify-content: space-between;
+                flex-direction: column;
             }
             .p-sm {
                 padding: 0.5em;
@@ -443,8 +445,8 @@
 
                                 <div class="flex-between">
                                     <div class="card-property-title">
-                                        <strong>Our target <span id="methdo_name">Bkash</span> number</strong>
-                                        <span id="method_info">{{ $manage->deposit_bkash_info }}</span>
+                                        <strong>Our target <span id="methdo_name" class="text-primary">Bkash</span> number</strong>
+                                        <span id="method_info" class="text-primary">{{ $manage->deposit_bkash_info }}</span>
                                     </div>
                                     <div class="card-property-value">
                                         <div class="input-container">

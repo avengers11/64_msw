@@ -71,12 +71,18 @@ class AdminBackendPackageController extends Controller
     }
     /*
     ====================
-        Deposit
+        Deposit 
     ====================
     */
     public function deposit(Request $request)
     {
         $dataType = Deposit::latest()->where('status', 0)->paginate(10);
+
+        return view('admin.pages.deposit.index', compact('dataType'));
+    }
+    public function depositSuccess(Request $request)
+    {
+        $dataType = Deposit::latest()->where('status', 1)->paginate(10);
 
         return view('admin.pages.deposit.index', compact('dataType'));
     }

@@ -204,3 +204,11 @@ div#hidden_wrapper {
     }
 }
 
+.button_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 10px;
+    overflow-x: auto;
+    gap: 10px;
+}

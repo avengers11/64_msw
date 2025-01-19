@@ -65,17 +65,17 @@ class admin_backend_settings_controller extends Controller
 
 
         management::where('id', 1) -> update([
-            "links1" => $data['links1'],
-            "links2" => $data['links2'],
-            "links3" => $data['links3'],
-            "news" => $data['news'],
+            // "links1" => $data['links1'],
+            // "links2" => $data['links2'],
+            // "links3" => $data['links3'],
+            // "news" => $data['news'],
             "news2" => $data['news2'],
 
-            "bg" => $bg,
-            "logo" => $logo,
-            "img1" => $pic_name1,
-            "img2" => $pic_name2,
-            "img3" => $pic_name3,
+            // "bg" => $bg,
+            // "logo" => $logo,
+            // "img1" => $pic_name1,
+            // "img2" => $pic_name2,
+            // "img3" => $pic_name3,
         ]);
         return back() -> with('msg', 'Your new link successfully updated!');
     }

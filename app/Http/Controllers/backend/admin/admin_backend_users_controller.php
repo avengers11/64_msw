@@ -131,11 +131,12 @@ class admin_backend_users_controller extends Controller
             "email" => $data['email'],
             "note" => $data['note'],
             "password" => isset($data['password']) ? $data['password'] : 0,
-            // "login_time" => $data['login_time'],
+            "login_time" => isset($data['login_time']) ? $data['login_time'] : $user->login_time,
+            "expired" => isset($data['expired']) ? time()+($data['expired']*86400) : $user->expired,
             "user_adult" => $data['user_adult'],
             "access_server" => json_encode(isset($data['access_server']) ? $data['access_server'] : []),
             "slider" => $data['slider'],
-            // "expired" => time()+($data['expired']*86400),
+            "products_access" => $data['products_access'],
         ]);
 
         // assign a package 
@@ -159,12 +160,22 @@ class admin_backend_users_controller extends Controller
     public function admin_users_search_controller(Request $req)
     {
         $data = $req -> all();
-        if(users::where('username', $data['username']) -> exists()){
-            $userdata = users::where('username', $data['username']) -> first();
-            return response() -> json(['st' => true, 'id' => $userdata['id']]);
+        if(user()->role == 1){
+            if(users::where('username', $data['username']) -> exists()){
+                $userdata = users::where('username', $data['username']) -> first();
+                return response() -> json(['st' => true, 'id' => $userdata['id']]);
+            }else{
+                return response() -> json(['st' => false]);
+            }
         }else{
-            return response() -> json(['st' => false]);
+            if(users::where('username', $data['username'])->where('creator_role', user()->id) -> exists()){
+                $userdata = users::where('username', $data['username']) -> first();
+                return response() -> json(['st' => true, 'id' => $userdata['id']]);
+            }else{
+                return response() -> json(['st' => false]);
+            }
         }
+        
     }
 
     // admin_users_delete_all_controller

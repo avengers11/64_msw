@@ -190,4 +190,13 @@ div#hidden_wrapper .container .title {
   text-align: center;
   display: inline-block;
   margin: 0;
+}
+
+.button_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 10px;
+  overflow-x: auto;
+  gap: 10px;
 }/*# sourceMappingURL=style.css.map */

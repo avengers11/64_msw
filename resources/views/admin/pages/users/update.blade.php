@@ -20,6 +20,13 @@
                 <a href="{{ route("deposit.add", $id) }}" class="btn btn-success">Deposit</a>
                 @endif
             </h5>
+
+            <p> Expired In:
+                {{ !empty($data->expired_format['months']) ? $data->expired_format['months']."Mo" : "" }}
+                {{ !empty($data->expired_format['days']) ? $data->expired_format['days']."d" : "" }}
+                {{ !empty($data->expired_format['hours']) ? $data->expired_format['hours']."h" : "" }}
+                {{ !empty($data->expired_format['minutes']) ? $data->expired_format['minutes']."m" : "" }}
+            </p>
             <form method="post" action="{{ route('admin_users_update_api', ['id' => $id]) }}">
 
                 <div class="form-group mb-3">
@@ -39,15 +46,16 @@
                     <input type="text" class="form-control" name="email" placeholder="email..." value="{{ $data['email'] }}" />
                 </div>
 
-                <div class="form-group mb-3">
-                    <label>Login time</label>
-                    <input type="number" class="form-control" name="login_time" placeholder="Login time..." value="{{ intval($data['login_time']) }}"  disabled/>
-                </div>
-
-                <div class="form-group mb-2">
-                    <label>Expired date</label>
-                    <input type="text" class="form-control" name="expired" placeholder="Expired date..." value="{{ ($data['expired'] - time())/86400 }}"  disabled/>
-                </div>
+                @if(admin_data(session() -> get('username'))['role'] == "1")
+                    <div class="form-group mb-3">
+                        <label>Login time</label>
+                        <input type="number" class="form-control" name="login_time" placeholder="Login time..." value="{{ intval($data['login_time']) }}"/>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Expired date</label>
+                        <input type="text" class="form-control" name="expired" placeholder="Expired date..." value="{{ ($data['expired'] - time())/86400 }}"/>
+                    </div>
+                @endif
 
                 <div class="form-group mb-3">
                     <label>User 18+??</label>
@@ -58,7 +66,13 @@
                     </select>
                 </div>
 
-
+                <div class="form-group mb-3">
+                    <label>User can access products?</label>
+                    <select name="products_access" class="form-select">
+                        <option value="Yes" @if($data['products_access'] == 'Yes') selected @endif>Yes</option>
+                        <option value="No" @if($data['products_access'] == 'No') selected @endif>No</option>
+                    </select>
+                </div>
                 <div class="form-group mb-3">
                     <label>Slider Type</label>
                     <select name="slider" class="form-select">

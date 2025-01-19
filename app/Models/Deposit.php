@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Deposit extends Model
 {
     use HasFactory;
+
+    public function user()
+    {
+        return $this->belongsTo(users::class, 'user_id');
+    }
 }
