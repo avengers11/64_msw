@@ -180,7 +180,7 @@
                 <br>
                 To access our services please contact to the following number.
                 <br>
-                WhatsApp Number: <span class="copy-number">{{ isse($creator->number) ? $creator->number : "" }}</span>
+                WhatsApp Number: <span class="copy-number">{{ isset($creator->number) ? $creator->number : "" }}</span>
             </h2>
         </div>
     </div>
