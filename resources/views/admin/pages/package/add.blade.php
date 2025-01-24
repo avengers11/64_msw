@@ -36,7 +36,7 @@
             </div>
             <div class="form-group mb-3">
                 <label>Package validity</label>
-                <input type="number" class="form-control" name="validity" />
+                <input type="string" class="form-control" name="validity" />
             </div>
             
             <input type="submit" value="CONFIRM" class="btn btn-success">
