@@ -68,8 +68,8 @@
                         @foreach (json_decode($login['contact_us']) as $item)
                             <div class="box-mr mb-3">
                                 <div class="form-group mb-3">
-                                    <label>Link</label>
-                                    <input type="text" class="form-control" name="links[]" value="{{$item->link}}"/>
+                                    <label>Text</label>
+                                    <textarea class="form-control" cols="30" rows="10" name="links[]">{{$item->link}}</textarea>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Logo</label>

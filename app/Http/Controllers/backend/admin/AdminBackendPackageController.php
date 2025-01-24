@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend\admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\PaymentAccept;
+use App\Mail\PaymentNotification;
 use App\Mail\PaymentRequest;
 use App\Models\Balance;
 use App\Models\Deposit;
@@ -101,6 +102,7 @@ class AdminBackendPackageController extends Controller
             $dataType->deposit_rocket_info = $request->deposit_rocket_info;
             $dataType->deposit_upay_number = $request->deposit_upay_number;
             $dataType->deposit_upay_info = $request->deposit_upay_info;
+            $dataType->deposit_submit_info = $request->deposit_submit_info;
             $dataType->save();
 
             return back()-> with('msg', 'Your deposit successfully added!');
@@ -163,6 +165,7 @@ class AdminBackendPackageController extends Controller
     public function processSubmit(Request $request)
     {
         $user = users::where('username', $request->session()->get('username'))->first();
+        $manage = management::where('id', 1) -> first();
 
         // image   
         $image = $request -> file('file');
@@ -184,8 +187,17 @@ class AdminBackendPackageController extends Controller
             'username' => $user->username,
             'method' => $deposit->method,
         ];
-        Mail::to(env('MAIL_ADMIN_EMAIL'))->send(new PaymentRequest($details));
+        Mail::to($user->email)->send(new PaymentRequest($details));
 
-        return redirect(route('deposit.index'))-> with('msg', 'Your deposit request successfully submited!');
+        $details = [
+            'title' => $user->username.', submit a order!',
+            'username' => $user->username,
+            'method' => $deposit->method,
+            'amount' => $request->amount,
+            'tranx_id' => $request->tranx_id,
+        ];
+        Mail::to(env('MAIL_ADMIN_EMAIL'))->send(new PaymentNotification($details));
+
+        return redirect(route('users.admin_all_web'))-> with('msg', $manage->deposit_submit_info);
     }
 }

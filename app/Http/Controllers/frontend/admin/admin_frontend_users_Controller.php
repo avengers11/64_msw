@@ -22,7 +22,11 @@ class admin_frontend_users_Controller extends Controller
     // admin_users_ban_controller
     public function admin_users_ban_controller()
     {
-        $userData = users::orderBy('id', 'DESC') -> where('st', 'ban') -> where('role', '0') -> paginate(10);
+        if(user()->role == 1){
+            $userData = users::orderBy('id', 'DESC') -> where('st', 'ban') -> where('role', '0') -> paginate(10);
+        }else{
+            $userData = users::orderBy('id', 'DESC') -> where('st', 'ban')->where("creator_role", user()->id) -> where('role', '0') -> paginate(10);
+        }
         return view('admin.pages.users.ban') -> with(compact('userData'));
     }
 
@@ -44,5 +48,16 @@ class admin_frontend_users_Controller extends Controller
         $packages = Package::latest()->get();
 
         return view('admin.pages.users.update') -> with(compact('data', 'id', 'devices', 'category', 'packages'));
+    }
+
+    // allExpiredUsers
+    public function allExpiredUsers()
+    {
+        if(user()->role == 1){
+            $userData = users::orderBy('id', 'DESC') -> where('st', 'active') -> where('expired', '<', time()) -> where('role', '0') -> paginate(10);
+        }else{
+            $userData = users::orderBy('id', 'DESC') -> where('st', 'active') -> where('expired', '<', time())->where("creator_role", user()->id) -> where('role', '0') -> paginate(10);
+        }
+        return view('admin.pages.users.all') -> with(compact('userData'));
     }
 }

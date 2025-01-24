@@ -85,8 +85,8 @@
             $("#contactUsWrapper").append(`
                 <div class="box-mr mb-3">
                     <div class="form-group mb-3">
-                        <label>Link</label>
-                        <input type="text" class="form-control" name="links[]" />
+                        <label>Text</label>
+                        <textarea class="form-control" cols="30" rows="10" name="links[]"><span class="copy-wrapper">Number<span class="copy-number">01700000000</span></span></textarea>
                     </div>
                     <div class="form-group mb-3">
                         <label>Logo</label>

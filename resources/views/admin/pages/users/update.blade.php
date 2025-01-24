@@ -46,6 +46,11 @@
                     <input type="text" class="form-control" name="email" placeholder="email..." value="{{ $data['email'] }}" />
                 </div>
 
+                <div class="form-group mb-3">
+                    <label>Mobile Number</label>
+                    <input type="text" class="form-control" name="number" placeholder="number..." value="{{ $data['number'] }}" />
+                </div>
+
                 @if(admin_data(session() -> get('username'))['role'] == "1")
                     <div class="form-group mb-3">
                         <label>Login time</label>

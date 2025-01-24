@@ -52,6 +52,9 @@
                                 <a style="{{Route::is('users.admin_all_web') ? 'color: green !important' : ''}}" href="{{route('users.admin_all_web')}}">ALL</a></a>
                             </li>
                             <li>
+                                <a style="{{Route::is('users.expired_all') ? 'color: green !important' : ''}}" href="{{route('users.expired_all')}}">Expire Users</a></a>
+                            </li>
+                            <li>
                                 <a style="{{Route::is('users.admin_ban_web') ? 'color: green !important' : ''}}" href="{{route('users.admin_ban_web')}}">BAN</a></a>
                             </li>
                         </ul>

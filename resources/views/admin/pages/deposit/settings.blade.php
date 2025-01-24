@@ -57,6 +57,11 @@
                     <label>Upay Info</label>
                     <input type="text" class="form-control" value="{{ $dataType->deposit_upay_info }}" name="deposit_upay_info" />
                 </div>
+
+                <div class="form-group mb-3 col-12">
+                    <label>Deposit Submit Info</label>
+                    <textarea name="deposit_submit_info" class="form-control" id="" cols="30" rows="10">{{ $dataType->deposit_submit_info }}</textarea>
+                </div>
                 
                 <input type="submit" value="CONFIRM" class="btn btn-success">
             </form>

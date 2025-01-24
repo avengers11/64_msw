@@ -31,7 +31,10 @@
                         <input type="text" class="form-control" name="password" placeholder="Password..." value="00000000" />
                     </div>
                 @endif
-
+                <div class="form-group mb-3">
+                    <label>Mobile Number</label>
+                    <input type="text" class="form-control" name="number" placeholder="number..." value="" />
+                </div>
                 <div class="form-group mb-3">
                     <label>Email</label>
                     <input type="text" class="form-control" name="email" placeholder="email..." value="" />

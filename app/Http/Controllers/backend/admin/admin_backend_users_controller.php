@@ -35,6 +35,7 @@ class admin_backend_users_controller extends Controller
         $db -> username = $data['username'];
         $db -> password = isset($data['password']) ? $data['password'] : 0;
         $db -> email = $data['email'];
+        $db -> number = $data['number'];
         $db -> login_time = isset($data['login_time']) ? $data['login_time'] : 0;
         $db -> creator_role = admin_data($req -> session() -> get('username'))['id'];
         $db -> expired = isset($data['expired']) ? time()+($data['expired']*86400) : 0;
@@ -129,6 +130,7 @@ class admin_backend_users_controller extends Controller
         users::where('id', $id) -> update([
             "username" => $data['username'],
             "email" => $data['email'],
+            "number" => $data['number'],
             "note" => $data['note'],
             "password" => isset($data['password']) ? $data['password'] : 0,
             "login_time" => isset($data['login_time']) ? $data['login_time'] : $user->login_time,

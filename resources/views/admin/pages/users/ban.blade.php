@@ -34,7 +34,16 @@
                         <tr>
                             <td>{{ $item['id'] }}</td>
                             <td>{{ $item['username'] }}</td>
-                            <td>{{ ( $item['expired'] - time())/86400 }}</td>
+                            <td>
+                                @if ($item['expired'] < time())
+                                    Expired
+                                @else
+                                    {{ !empty($item->expired_format['months']) ? $item->expired_format['months']."Mo" : "" }}
+                                    {{ !empty($item->expired_format['days']) ? $item->expired_format['days']."d" : "" }}
+                                    {{ !empty($item->expired_format['hours']) ? $item->expired_format['hours']."h" : "" }}
+                                    {{ !empty($item->expired_format['minutes']) ? $item->expired_format['minutes']."m" : "" }}
+                                @endif
+                            </td>
                             <td>
                                 <a href="{{ route('admin_users_delete_api', ['id' => $item['id']]) }}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                                 <a href="{{ route('admin_users_unban_api', ['id' => $item['id']]) }}" class="btn btn-success"><i class="fa-solid fa-check"></i></a>

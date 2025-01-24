@@ -70,3 +70,31 @@ const animate_new = () => {
 }
     
 animate_new();
+
+
+$("#model-popup .model-wrapper .content-header button.close-model").click(function(){
+    $("#model-popup").addClass("d-none");
+});
+$(".open-contact-text").click(function(){
+    let content = $(this).find(".hidden-content").html();
+    $("#model-content-wrapper").html(content);
+    $("#model-popup").removeClass("d-none");
+});
+
+
+$(document).on("click", ".copy-wrapper", function(){
+    const textInput = $(this).find(".copy-number").text();
+    console.log(textInput);
+    
+    $(this).find(".copy-number").text("Coping...");
+    const tempInput = document.createElement("textarea");
+    tempInput.value = textInput;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+    setTimeout(() => {
+        $(this).find(".copy-number").text(textInput);
+    }, 200);
+})

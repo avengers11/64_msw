@@ -36,10 +36,14 @@
                             <td>{{ $item['id'] }}</td>
                             <td>{{ $item['username'] }}</td>
                             <td>
-                                {{ !empty($item->expired_format['months']) ? $item->expired_format['months']."Mo" : "" }}
-                                {{ !empty($item->expired_format['days']) ? $item->expired_format['days']."d" : "" }}
-                                {{ !empty($item->expired_format['hours']) ? $item->expired_format['hours']."h" : "" }}
-                                {{ !empty($item->expired_format['minutes']) ? $item->expired_format['minutes']."m" : "" }}
+                                @if ($item['expired'] < time())
+                                    Expired
+                                @else
+                                    {{ !empty($item->expired_format['months']) ? $item->expired_format['months']."Mo" : "" }}
+                                    {{ !empty($item->expired_format['days']) ? $item->expired_format['days']."d" : "" }}
+                                    {{ !empty($item->expired_format['hours']) ? $item->expired_format['hours']."h" : "" }}
+                                    {{ !empty($item->expired_format['minutes']) ? $item->expired_format['minutes']."m" : "" }}
+                                @endif
                             </td>
                             <td>
                                 <a href="{{ route('admin_users_ban_api', ['id' => $item['id']]) }}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
