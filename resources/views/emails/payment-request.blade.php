@@ -69,7 +69,7 @@
 
         <!-- Footer Section -->
         <div class="footer">
-            <p>If you have any questions, feel free to <a href="mailto:support@example.com">contact us</a>.</p>
+            <p>If you have any questions, feel free to <a href="https://ott-app.com/links/telegram">contact us</a>.</p>
             <p>&copy; {{ date('Y') }} Your {{ env('APP_NAME') }}. All rights reserved.</p>
         </div>
     </div>
