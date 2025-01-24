@@ -73,12 +73,38 @@ $("#colo_box").change(function () {
 
 
 $(".products_access").click(function () {
-    $("#hidden_wrapper").removeClass('d-none');
     setTimeout(() => {
-        $("#hidden_wrapper").addClass('d-none');
-    }, 2000);
+        $("#hidden_wrapper").removeClass('d-none');
+    }, 500);
 });
 
-$("#hidden_wrapper").click(function () {
+
+$(".hidden_wrapper").click(function () {
     $("#hidden_wrapper").addClass('d-none');
 });
+
+
+
+$("#hidden_wrapper").click(function () {
+    setTimeout(() => {
+        $("#hidden_wrapper").addClass('d-none');
+    }, 500);
+});
+
+
+$(document).on("click", ".copy-wrapper", function(){
+    const textInput = $(this).find(".copy-number").text();
+    console.log(textInput);
+    
+    $(this).find(".copy-number").text("Coping...");
+    const tempInput = document.createElement("textarea");
+    tempInput.value = textInput;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+    setTimeout(() => {
+        $(this).find(".copy-number").text(textInput);
+    }, 200);
+})

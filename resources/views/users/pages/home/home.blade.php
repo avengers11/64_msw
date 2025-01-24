@@ -175,7 +175,13 @@
 
     <div id="hidden_wrapper" class="d-none">
         <div class="container">
-            <h2 class="title">You are currenctly unavaiable for access!</h2>
+            <h2 class="title copy-wrapper">
+                You are currenctly unavaiable for access!
+                <br>
+                To access our services please contact to the following number.
+                <br>
+                WhatsApp Number: <span class="copy-number">{{ $creator->number }}</span>
+            </h2>
         </div>
     </div>
 

@@ -20,6 +20,7 @@ class users_frontend_deshbord_controller extends Controller
     public function users_home_controller(Request $request, $id=null)
     {
         $userData = users::where('username', $request -> session() -> get('username')) -> first();
+        $creator = users::where('creator_role', $userData->id) -> first();
         $management = management::where('id', 1) -> first();
 
         $accessCategory = json_decode($userData->access_server);
@@ -64,7 +65,7 @@ class users_frontend_deshbord_controller extends Controller
         // where
         $where = "server1";
 
-        return view('users.pages.home.home') -> with(compact('products', 'slider', 'userData', 'where', 'management', 'cat', 'id', 'cat_f', 'cat_r'));
+        return view('users.pages.home.home') -> with(compact('products', 'slider', 'userData', 'where', 'management', 'cat', 'id', 'cat_f', 'cat_r', 'creator'));
     }
 
     // users_note_controller

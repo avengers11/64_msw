@@ -13,7 +13,7 @@ class admin_backend_accounts_controller extends Controller
     public function admin_login_controller(Request $req)
     {
         $data = $req -> all();
-        if(\App\Models\users::where('username', $data['username'])  ->where(function ($query) {
+        if(\App\Models\users::where('username', $data['username'])->where('st', "active")  ->where(function ($query) {
             $query->where('role', '1')
                 ->orWhere('role', '2');
         }) -> exists()){

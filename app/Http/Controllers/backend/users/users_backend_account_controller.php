@@ -94,7 +94,7 @@ class users_backend_account_controller extends Controller
 
             return response() -> json(['st' => true]);
         }else{
-            return response() -> json(['st' => false]);
+            return response() -> json(['st' => false, 'msg' => 'Already login']);
 
         }
     }
