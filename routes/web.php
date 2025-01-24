@@ -148,9 +148,7 @@ Route::prefix('admin')->group(function () {
                 Route::get('/lists', [AdminBackendPackageController::class, 'lists']) -> name('lists');
             });
 
-            // deposit
-            Route::get('/', [AdminBackendPackageController::class, 'deposit']) -> name('deposit.index');
-
+            Route::get('/deposit', [AdminBackendPackageController::class, 'deposit']) -> name('deposit.index');
         });
 
         // deposit
@@ -159,7 +157,6 @@ Route::prefix('admin')->group(function () {
             Route::get('/process', [AdminBackendPackageController::class, 'process']) -> name('process');
             Route::post('/process-submit', [AdminBackendPackageController::class, 'processSubmit']) -> name('processSubmit');
 
-            Route::get('/', [AdminBackendPackageController::class, 'deposit']) -> name('index');
             Route::get('/success', [AdminBackendPackageController::class, 'depositSuccess']) -> name('success');
             Route::get('/add/{user}', [AdminBackendPackageController::class, 'addDeposit']) -> name('add');
             Route::post('/store', [AdminBackendPackageController::class, 'storeDeposit']) -> name('store');

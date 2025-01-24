@@ -24,7 +24,7 @@ class users extends Model
     {
         $user = users::where('username', session()->get('username'))->first();
 
-        return Balance::where('user_id', $user->id)->sum('amount') ?? 0;
+        return Balance::where('user_id', $this->id)->sum('amount') ?? 0;
     }
 
     public function getExpiredFormatAttribute()
