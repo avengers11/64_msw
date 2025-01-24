@@ -30,7 +30,7 @@
                 Admin Panel
                 <a class="nav-link  mr-lg-2" href="{{ route("deposit.process") }}">
                     <i class="fa-solid fa-wallet"></i>
-                    <span class="text-light">Balance: 
+                    <span class="text-light">
                         <span class="badge badge-pill badge-primary">{{ \App\Models\users::where('username', session()->get('username'))->first()->balance; }} BDT</span>
                         <i class="fa-solid fa-plus text-light"></i>
                     </span>
