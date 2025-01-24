@@ -20,7 +20,7 @@ class users_frontend_deshbord_controller extends Controller
     public function users_home_controller(Request $request, $id=null)
     {
         $userData = users::where('username', $request -> session() -> get('username')) -> first();
-        $creator = users::where('creator_role', $userData->id) -> first();
+        $creator = users::find($userData->creator_role);
         $management = management::where('id', 1) -> first();
 
         $accessCategory = json_decode($userData->access_server);
