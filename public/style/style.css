@@ -104,7 +104,7 @@
   text-align: center;
 }
 
-.swiper.mySwiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
+.swiper {
   transform: translateY(-9rem);
   width: 100%;
   border-radius: 15px;

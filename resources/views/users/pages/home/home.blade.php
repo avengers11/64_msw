@@ -77,32 +77,23 @@
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 @foreach ($slider as $item)
-                @if ($userData['products_access'] == "Yes")
-                    @if(session() -> has('content18') == "on")
-                        <a href="{{ $item['links'] }}" class="swiper-slide">
-                            <img style="height:30vh" src="{{ asset('images/slider/'.$item['img']) }}" alt="">
-                        </a>
-                    @else
-                        @if($item['user_adult'] == 0)
+                    @if ($userData['products_access'] == "Yes")
+                        @if(session() -> has('content18') == "on")
                             <a href="{{ $item['links'] }}" class="swiper-slide">
                                 <img style="height:30vh" src="{{ asset('images/slider/'.$item['img']) }}" alt="">
                             </a>
+                        @else
+                            @if($item['user_adult'] == 0)
+                                <a href="{{ $item['links'] }}" class="swiper-slide">
+                                    <img style="height:30vh" src="{{ asset('images/slider/'.$item['img']) }}" alt="">
+                                </a>
+                            @endif
                         @endif
-                    @endif
-                @else
-                    @if(session() -> has('content18') == "on")
+                    @else
                         <a class="swiper-slide products_access">
                             <img style="height:30vh" src="{{ asset('images/slider/'.$item['img']) }}" alt="">
                         </a>
-                    @else
-                        @if($item['user_adult'] == 0)
-                            <a class="swiper-slide products_access">
-                                <img style="height:30vh" src="{{ asset('images/slider/'.$item['img']) }}" alt="">
-                            </a>
-                        @endif
                     @endif
-                @endif
-    
                         
                 @endforeach
             </div>
