@@ -41,7 +41,7 @@
                     @foreach ($dataType as $item)
                         <tr>
                             <td>{{ $item['id'] }}</td>
-                            <td>{{ $item->user->username}}</td>
+                            <td>{{ isset($item->user->username) ? $item->user->username : ""}}</td>
                             <td>{{ $item['amount'] }}</td>
                             <td>{{ $item['method'] }}</td>
                             <td>{{ $item['tranx_id'] }}</td>
@@ -50,6 +50,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('users.admin_update_web', $item->user_id) }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                <a href="{{ route('deposit.delete', $item) }}" onclick="return confirm('Are you sure?')" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                                 @if (Route::is('deposit.index'))
                                     <a href="{{ route('deposit.accept', $item) }}" class="btn btn-success"><i class="fa-duotone fa-solid fa-check"></i></a>
                                     <a href="{{ route('deposit.delete', $item) }}" onclick="return confirm('Are you sure?')" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
