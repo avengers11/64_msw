@@ -139,7 +139,7 @@ class AdminBackendPackageController extends Controller
         $deposit->save();
 
         // send email 
-        $user = user();
+        $user = users::find($deposit->user_id);
         $details = [
             'title' => 'Your Order is now complete',
             'username' => $user->username,

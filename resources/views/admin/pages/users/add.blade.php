@@ -52,7 +52,7 @@
                     <label>Access details</label>
                     <br>
                     <select name="access_server[]" class="form-control selectpicker" multiple aria-label="Default select example" data-live-search="true">
-                        <option value="0">All</option>
+                        <option value="0" selected>All</option>
                         @foreach ($category as $item)
                             <option value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach
