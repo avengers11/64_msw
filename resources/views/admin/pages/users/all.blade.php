@@ -46,7 +46,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="mailto:{{$item['email']}}?subject=Your Subject Here&body=Your Message Here" class="btn btn-success"><i class="fa-solid fa-envelope"></i></a>
+                                <a href="mailto:{{$item['email']}}" class="btn btn-success"><i class="fa-solid fa-envelope"></i></a>
                                 <a href="https://wa.me/+88{{ $item['number'] }}" class="btn btn-success"><i class="fa-brands fa-square-whatsapp"></i></a>
                                 <a href="{{ route('admin_users_ban_api', ['id' => $item['id']]) }}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                                 <a href="{{ route('users.admin_update_web', ['id' => $item['id']]) }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
