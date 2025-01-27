@@ -46,7 +46,7 @@
                                 @endif
                             </td>
                             <td>
-                                <div class="d-flex gap-2">
+                                <div class="d-flex gap-2 mb-2">
                                     <a href="mailto:{{$item['email']}}" class="btn btn-success"><i class="fa-solid fa-envelope"></i></a>
                                     <a href="https://wa.me/+88{{ $item['number'] }}" class="btn btn-success"><i class="fa-brands fa-square-whatsapp"></i></a>
                                 </div>

@@ -146,6 +146,7 @@ class admin_backend_users_controller extends Controller
         // assign a package 
         if(!empty($req->package_id)){
             users::where('id', $id) -> update([
+                "products_access" =>"Yes",
                 "login_time" => $package->login_time,
                 "expired" => time()+($package->validity*86400)
             ]);

@@ -10,11 +10,10 @@
         <link rel="stylesheet" href="{{url('login/ac5')}}/css/Z4VT233Cg7Y0.css" />
         <style>
             .logos img {
-                width: 60px;
-                height: 60px;
+                width: 80px;
+                height: 80px;
                 object-fit: cover;
                 border-radius: 50%;
-                box-shadow: 0px 0px 3px #5f5f5f, 0px 0px 0px 5px #e9e9e9, 8px 8px 15px #535353, -8px -8px 15px #161616;
                 margin: auto;
                 display: block;
                 margin-bottom: 15px;
@@ -57,7 +56,7 @@
             }
         </style>
     </head>
-    <body style="background-image: url({{ asset('images/contact/'.$login['background_img']) }});">
+    <body style="background-image: url({{ asset('images/contact/'.$login['background_img']) }}); height: 100vh; overflow: hidden;">
         <section class="ftco-section">
             <div class="container">
                 <div class="row justify-content-center">
@@ -70,6 +69,16 @@
                             </div>
 
                             <h3 class="text-center mb-0">Welcome</h3>
+                            <p style=" 
+                                font-family: SourceSansPro-Bold;
+                                font-size: 16px;
+                                color: #ffff;
+                                line-height: 1.2;
+                                display: block;
+                                background: 0 0;
+                                text-align: center;
+                                margin-bottom: 5px;
+                            ">Enter your username</p>
                             <form action="#" class="login-form" id="submit_form">
                                 <div class="form-group">
                                     <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
@@ -109,9 +118,8 @@
         <div id="model-popup" class="d-none">
             <div class="model-wrapper">
                 <div class="content-header">
-                    <h2>Notice</h2>
                     <button class="close-model">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfH_A_k62GMbl6LBMwm269YoWCmUsTJOWk5A&s" alt="">
+                        <img src="{{ asset("images/icons/close.png") }}" alt="">
                     </button>
                 </div>
                 <div class="content-body" id="model-content-wrapper">
@@ -127,6 +135,11 @@
                 width: 100%;
                 
             }
+            #model-popup .model-wrapper button.close-model{
+                position: absolute;
+                right: 10px;
+                top: 6px;
+            }
             #model-popup .model-wrapper{
                 position: absolute;
                 left: 50%;
@@ -134,11 +147,10 @@
                 transform: translate(-50%, -50%);
                 box-shadow: 0 0 0 100vh #000000a3;
                 min-width: 85%;
-                min-height: 50vh;
                 background: white;
                 border-radius: 25px;
                 padding: 15px;
-                z-index: 100000000;
+                z-index: 100;
             }
             #model-popup .model-wrapper .content-header {
                 display: flex;
@@ -151,9 +163,8 @@
                 border: none;
             }
             #model-popup .model-wrapper .content-header button.close-model img{
-                height: 35px;
+                height: 26px;
             }
-            
         </style>
         {{-- hidden input  --}}
     <input type="hidden" value="" id="city">

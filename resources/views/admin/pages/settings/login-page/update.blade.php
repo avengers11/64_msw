@@ -55,10 +55,6 @@
                     <img style="height: 100px" src="{{ asset('images/contact/'.$login['background_img']) }}" alt="">
                     <input type="file" class="form-control" name="background_img"  />
                 </div>
-                <div class="form-group mb-3">
-                    <label>Notice</label>
-                    <input type="text" class="form-control" name="notice" value="{{$login['notice']}}"/>
-                </div>
     
                 <div class="card mb-3">
                     <div class="card-header">Contact Us <button class="btn btn-primary" id="addNewContact" type="button">ADD</button></div>

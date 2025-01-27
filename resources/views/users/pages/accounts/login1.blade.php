@@ -217,9 +217,8 @@
     <div id="model-popup" class="d-none">
         <div class="model-wrapper">
             <div class="content-header">
-                <h2>Notice</h2>
                 <button class="close-model">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfH_A_k62GMbl6LBMwm269YoWCmUsTJOWk5A&s" alt="">
+                    <img src="{{ asset("images/icons/close.png") }}" alt="">
                 </button>
             </div>
             <div class="content-body" id="model-content-wrapper">
@@ -235,6 +234,11 @@
             width: 100%;
             
         }
+        #model-popup .model-wrapper button.close-model{
+            position: absolute;
+            right: 10px;
+            top: 6px;
+        }
         #model-popup .model-wrapper{
             position: absolute;
             left: 50%;
@@ -242,7 +246,6 @@
             transform: translate(-50%, -50%);
             box-shadow: 0 0 0 100vh #000000a3;
             min-width: 85%;
-            min-height: 50vh;
             background: white;
             border-radius: 25px;
             padding: 15px;
@@ -258,9 +261,8 @@
             border: none;
         }
         #model-popup .model-wrapper .content-header button.close-model img{
-            height: 35px;
+            height: 26px;
         }
-        
     </style>
 
 

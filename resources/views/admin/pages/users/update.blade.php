@@ -22,10 +22,14 @@
             </h5>
 
             <p> Expired In:
-                {{ !empty($data->expired_format['months']) ? $data->expired_format['months']."Mo" : "" }}
-                {{ !empty($data->expired_format['days']) ? $data->expired_format['days']."d" : "" }}
-                {{ !empty($data->expired_format['hours']) ? $data->expired_format['hours']."h" : "" }}
-                {{ !empty($data->expired_format['minutes']) ? $data->expired_format['minutes']."m" : "" }}
+                @if ($data['expired'] < time())
+                    Expired
+                @else
+                    {{ !empty($data->expired_format['months']) ? $data->expired_format['months']."Mo" : "" }}
+                    {{ !empty($data->expired_format['days']) ? $data->expired_format['days']."d" : "" }}
+                    {{ !empty($data->expired_format['hours']) ? $data->expired_format['hours']."h" : "" }}
+                    {{ !empty($data->expired_format['minutes']) ? $data->expired_format['minutes']."m" : "" }}
+                @endif
             </p>
             <form method="post" action="{{ route('admin_users_update_api', ['id' => $id]) }}">
 

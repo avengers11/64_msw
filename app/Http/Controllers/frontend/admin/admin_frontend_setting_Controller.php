@@ -253,7 +253,7 @@ class admin_frontend_setting_Controller extends Controller
         $login->contact_us = json_encode($contactUs);
         $login->save();
 
-        return back()->with('msg', 'You are successfully add a new login page!');
+        return back()->with('msg', 'You are successfully updated a new login page!');
     }
     public function admin_settings_login_page_delete_controller(LoginPage $login)
     {
@@ -321,6 +321,6 @@ class admin_frontend_setting_Controller extends Controller
         $login->contact_us = json_encode($contactUs);
         $login->save();
 
-        return back()->with('msg', 'You are successfully add a new login page!');
+        return back()->with('msg', 'You are successfully updated login page!');
     }
 }

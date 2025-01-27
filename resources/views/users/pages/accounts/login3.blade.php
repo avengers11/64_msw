@@ -72,11 +72,22 @@
                         <img src="{{ asset('images/contact/'.$login['logo']) }}" alt="">
                     </div>
 
-                    <span class="login100-form-title p-b-37">
+                    <span class="login100-form-title p-b-37" style="padding-bottom: 5px;">
                         Welcome
                     </span>
+                    <p style=" 
+                            font-family: SourceSansPro-Bold;
+                            font-size: 16px;
+                            color: #4b2354;
+                            line-height: 1.2;
+                            display: block;
+                            background: 0 0;
+                            text-align: center;
+                            margin-bottom: 15px;
+                    ">Enter your username</p>
+
                     <div class="wrap-input100 validate-input m-b-20" data-validate="Enter your username">
-                        <input class="input100" type="text" name="username" placeholder="Enter your username" id="login_username" autocomplete="off" required/>
+                        <input class="input100" type="text" name="username" placeholder="Username" id="login_username" autocomplete="off" required/>
                         <span class="focus-input100"></span>
                     </div>
                     <div class="container-login100-form-btn">
@@ -84,12 +95,17 @@
                             Login
                         </button>
                     </div>
-                    <div class="text-center p-t-57 p-b-20">
+                    <div class="text-center p-t-57 p-b-20" 
+                    style=" 
+                    padding-top: 15px;
+                    padding-bottom: 15px;
+                    "
+                    >
                         <span class="txt1">
                             Contact Us
                         </span>
                     </div>
-                    <div class="flex-c p-b-112">
+                    <div class="flex-c p-b-112" style="padding-bottom: 0;">
                         @if($login['contact_us'] != null)
                             @foreach (json_decode($login['contact_us']) as $item)
                                 <div class="open-contact-text">
@@ -111,9 +127,8 @@
         <div id="model-popup" class="d-none">
             <div class="model-wrapper">
                 <div class="content-header">
-                    <h2>Notice</h2>
                     <button class="close-model">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfH_A_k62GMbl6LBMwm269YoWCmUsTJOWk5A&s" alt="">
+                        <img src="{{ asset("images/icons/close.png") }}" alt="">
                     </button>
                 </div>
                 <div class="content-body" id="model-content-wrapper">
@@ -129,6 +144,11 @@
                 width: 100%;
                 
             }
+            #model-popup .model-wrapper button.close-model{
+                position: absolute;
+                right: 10px;
+                top: 6px;
+            }
             #model-popup .model-wrapper{
                 position: absolute;
                 left: 50%;
@@ -136,11 +156,10 @@
                 transform: translate(-50%, -50%);
                 box-shadow: 0 0 0 100vh #000000a3;
                 min-width: 85%;
-                min-height: 50vh;
                 background: white;
                 border-radius: 25px;
                 padding: 15px;
-                z-index: 100000000;
+                z-index: 100;
             }
             #model-popup .model-wrapper .content-header {
                 display: flex;
@@ -153,9 +172,8 @@
                 border: none;
             }
             #model-popup .model-wrapper .content-header button.close-model img{
-                height: 35px;
+                height: 26px;
             }
-            
         </style>
         {{-- hidden input  --}}
         <input type="hidden" value="" id="city">

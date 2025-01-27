@@ -51,7 +51,16 @@
     @endif
 
     <div class="home_header" style="background: {{ $management['bg_color'] }};">
-        <p class="title">Username: {{$userData['username']}} <br> @if(intval(($userData['expired']-time())/86400) < 1) Expired Today @else Validity:  {{intval(($userData['expired']-time())/86400)+1}} days @endif</p>
+        <p class="title">Username: {{$userData['username']}} <br>
+            @if ($userData['expired'] < time())
+                Expired
+            @else
+                {{ !empty($userData->expired_format['months']) ? $userData->expired_format['months']."Mo" : "" }}
+                {{ !empty($userData->expired_format['days']) ? $userData->expired_format['days']."d" : "" }}
+                {{ !empty($userData->expired_format['hours']) ? $userData->expired_format['hours']."h" : "" }}
+                {{ !empty($userData->expired_format['minutes']) ? $userData->expired_format['minutes']."m" : "" }}
+            @endif
+        </p>
         @if($userData['role'] == "1")
             <button class="btn btn-primary" id="Change_Color">EDIT</button>
             <input type="color" id="colo_box" style="display:none" id="">
