@@ -208,8 +208,12 @@ class admin_frontend_setting_Controller extends Controller
     // admin_settings_login_page_add_submit_controller
     function admin_settings_login_page_add_submit_controller(Request $request)
     {
-        $contactUs = [];
+        // check route  
+        if(LoginPage::where("route", $request->route)->exists()){
+            return back()->with('msg', 'This route already exists!');
+        }
 
+        $contactUs = [];
         if(!empty($request->links)){
             foreach ($request->links as $index => $value) {
                 $fileName = "";
@@ -241,7 +245,8 @@ class admin_frontend_setting_Controller extends Controller
 
         $login = new LoginPage();
         $login->login_page = $request->login_page;
-        $login->buy_now = $request->buy_now;
+        $login->buy_now = 0;
+        $login->route = $request->route;
         $login->notice = $request->notice;
         $login->logo = $logoFile;
         $login->background_img = $bgFile;
@@ -300,9 +305,17 @@ class admin_frontend_setting_Controller extends Controller
             $file->move(public_path('images/contact'), $bgFile);
         }
 
+        // check route  
+        if($login->route != $request->route){
+            if(LoginPage::where("route", $request->route)->exists()){
+                return back()->with('msg', 'This route already exists!');
+            }
+        }
+
         $login->login_page = $request->login_page;
-        $login->buy_now = $request->buy_now;
+        $login->buy_now = 0;
         $login->notice = $request->notice;
+        $login->route = $request->route;
         $login->logo = $logoFile;
         $login->background_img = $bgFile;
         $login->contact_us = json_encode($contactUs);

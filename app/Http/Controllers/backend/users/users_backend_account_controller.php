@@ -29,12 +29,15 @@ class users_backend_account_controller extends Controller
         // user data
         $userData = users::where('username', $data['username']) -> first();
 
-        // expired
+        // // expired
         if(users::where('username', $data['username']) -> where('expired', '<', time()) -> exists()){
             loging_log::where('username', $data['username'])->delete();
-            Device::where('username', $data['username'])->delete();
+            // Device::where('username', $data['username'])->delete();
             
-            return response() -> json(['st' => false, 'msg' => 'Your id is expired.']);
+            // return response() -> json(['st' => false, 'msg' => 'Your id is expired.']);
+
+            $userData['products_access'] = "No";
+            $userData -> save();
         }
 
         // is ban

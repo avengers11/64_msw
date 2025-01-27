@@ -73,9 +73,7 @@ $("#colo_box").change(function () {
 
 
 $(".products_access").click(function () {
-    setTimeout(() => {
-        $("#hidden_wrapper").removeClass('d-none');
-    }, 500);
+    $("#hidden_wrapper").removeClass('d-none');
 });
 
 

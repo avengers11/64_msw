@@ -3,15 +3,13 @@
 
 <!-- Example DataTables Card-->
 <div class="container">
-    <div class="row">
-        @if (session() -> has('msg'))
-            <div class="alert alert-success col-12" role="alert">
-                <h4 class="alert-heading">Alert</h4>
-                <hr>
-                <p>{{session() -> get('msg')}}</p>
-            </div>
-        @endif
-    </div>
+    @if (session() -> has('msg'))
+        <div class="alert alert-success col-12" role="alert">
+            <h4 class="alert-heading">Alert</h4>
+            <hr>
+            <p>{{session() -> get('msg')}}</p>
+        </div>
+    @endif
 </div>
 
 <div class="card mb-3">
@@ -25,6 +23,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>URL</th>
                         <th>Logo</th>
                         <th>Background Img</th>
                         <th>Notice</th>
@@ -36,6 +35,7 @@
                     @foreach ($slider as $item)
                         <tr>
                             <td>{{ $item['id'] }}</td>
+                            <td>{{ url("login") }}/{{ $item['route'] }}</td>
                             <td><img class="images" src="{{ asset('images/contact/'.$item['logo']) }}" alt=""></td>
                             <td><img class="images" src="{{ asset('images/contact/'.$item['background_img']) }}" alt=""></td>
                             <td>{{ $item['notice'] }}</td>

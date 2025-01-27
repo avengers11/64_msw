@@ -35,8 +35,9 @@ class admin_frontend_users_Controller extends Controller
     {
         $category = Category::latest()->get();
         $packages = Package::latest()->get();
+        $user = user();
         
-        return view('admin.pages.users.add', compact('category', 'packages'));
+        return view('admin.pages.users.add', compact('category', 'packages', 'user'));
     }
 
     // admin_users_update_controller

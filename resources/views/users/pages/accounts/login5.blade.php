@@ -86,9 +86,12 @@
                                 <div class="contact-us mt-2">
                                     @if($login['contact_us'] != null)
                                         @foreach (json_decode($login['contact_us']) as $item)
-                                            <a href="{{$item->link}}" class="contact">
-                                                <img src="{{ asset('images/contact/'.$item->logo) }}" alt="" />
-                                            </a>
+                                            <div class="open-contact-text">
+                                                <div class="d-none hidden-content">
+                                                    {!!  $item->link !!}
+                                                </div>
+                                                <img style="width: 3rem;height: 3rem;border-radius: 50%;" src="{{ asset('images/contact/'.$item->logo) }}" alt="">
+                                            </div>
                                         @endforeach
                                     @endif
                                 </div>
@@ -102,6 +105,56 @@
             <a href=""><img class="add-to-cart-page" src="{{asset("images\icons\add-cart.webp")}}" alt=""></a>
         @endif
 
+
+        <div id="model-popup" class="d-none">
+            <div class="model-wrapper">
+                <div class="content-header">
+                    <h2>Notice</h2>
+                    <button class="close-model">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfH_A_k62GMbl6LBMwm269YoWCmUsTJOWk5A&s" alt="">
+                    </button>
+                </div>
+                <div class="content-body" id="model-content-wrapper">
+                </div>
+            </div>
+        </div>
+        <style>
+            .d-none{
+                display: none !important;
+            }
+            #model-popup{
+                height: 100vh;
+                width: 100%;
+                
+            }
+            #model-popup .model-wrapper{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                box-shadow: 0 0 0 100vh #000000a3;
+                min-width: 85%;
+                min-height: 50vh;
+                background: white;
+                border-radius: 25px;
+                padding: 15px;
+                z-index: 100000000;
+            }
+            #model-popup .model-wrapper .content-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-bottom: 20px;
+            }
+            #model-popup .model-wrapper .content-header button.close-model{
+                outline: none;
+                border: none;
+            }
+            #model-popup .model-wrapper .content-header button.close-model img{
+                height: 35px;
+            }
+            
+        </style>
         {{-- hidden input  --}}
     <input type="hidden" value="" id="city">
     <input type="hidden" value="" id="ip">

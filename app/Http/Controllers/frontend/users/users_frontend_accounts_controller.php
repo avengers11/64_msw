@@ -12,9 +12,12 @@ class users_frontend_accounts_controller extends Controller
     //users_accounts_controller
     public function users_accounts_controller()
     {
-        $login = LoginPage::where('login_page', 1) -> orderByDesc("id") -> first();
+        // $login = LoginPage::where('login_page', 1) -> orderByDesc("id") -> first();
+
+        $login = LoginPage::where('login_page', '!=', 0)->orderBy("id", "ASC")->first();
+
         if(LoginPage::where('login_page', 1) -> orderByDesc("id") -> exists()){
-            return view('users.pages.accounts.login') -> with(compact('login'));
+            return view('users.pages.accounts.login1') -> with(compact('login'));
         }else{
             return "No Data Found";
         }
@@ -51,6 +54,15 @@ class users_frontend_accounts_controller extends Controller
         $login = LoginPage::where('login_page', 5) -> orderByDesc("id") -> first();
         if(LoginPage::where('login_page', 5) -> orderByDesc("id") -> exists()){
             return view('users.pages.accounts.login5') -> with(compact('login'));
+        }else{
+            return "No Data Found";
+        }
+    }
+    public function users_dynamic_login_controller($login)
+    {
+        $login = LoginPage::where('route', $login)->where('login_page', '!=', 0)->first();
+        if(!empty($login)){
+            return view('users.pages.accounts.login'.$login->login_page) -> with(compact('login'));
         }else{
             return "No Data Found";
         }

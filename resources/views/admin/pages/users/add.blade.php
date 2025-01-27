@@ -100,6 +100,17 @@
                     <textarea class="form-control" style="height:150px" name="note"></textarea>
                 </div>
 
+                <div class="form-group mb-3">
+                    <label>User can't access product</label>
+                    <textarea class="form-control" style="height:150px" name="cant_access_notice">
+You are currenctly unavaiable for access!
+<br>
+To access our services please contact to the following number.
+<br>
+WhatsApp Number: <span class="copy-number">{{ isset($user->number) ? $user->number : "" }}</span>
+                    </textarea>
+                </div>
+
                 <hr>
                 <div class="form-group mb-3">
                     <label class="d-flex align-items-center justify-content-between">

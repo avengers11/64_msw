@@ -226,7 +226,6 @@
             </div>
         </div>
     </div>
-
     <style>
         .d-none{
             display: none !important;

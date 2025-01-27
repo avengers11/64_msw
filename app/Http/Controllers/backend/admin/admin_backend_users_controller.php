@@ -45,6 +45,7 @@ class admin_backend_users_controller extends Controller
         $db -> products_access = $data['products_access'];
         $db -> role = isset($data['role']) ? $data['role'] : 0;
         $db -> note = $data['note'];
+        $db -> cant_access_notice = $data['cant_access_notice'];
         $db -> save();
 
         // assign a package 
@@ -132,6 +133,7 @@ class admin_backend_users_controller extends Controller
             "email" => $data['email'],
             "number" => $data['number'],
             "note" => $data['note'],
+            "cant_access_notice" => $data['cant_access_notice'],
             "password" => isset($data['password']) ? $data['password'] : 0,
             "login_time" => isset($data['login_time']) ? $data['login_time'] : $user->login_time,
             "expired" => isset($data['expired']) ? time()+($data['expired']*86400) : $user->expired,
