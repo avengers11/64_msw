@@ -42,7 +42,7 @@ class admin_backend_users_controller extends Controller
         $db -> user_adult = $data['user_adult'];
         $db -> access_server = json_encode(isset($data['access_server']) ? $data['access_server'] : []);
         $db -> slider = $data['slider'];
-        $db -> products_access = $data['products_access'];
+        $db -> products_access = isset($data['products_access']) ? $data['products_access'] : "Yes";
         $db -> role = isset($data['role']) ? $data['role'] : 0;
         $db -> note = $data['note'];
         $db -> cant_access_notice = $data['cant_access_notice'];
@@ -140,7 +140,7 @@ class admin_backend_users_controller extends Controller
             "user_adult" => $data['user_adult'],
             "access_server" => json_encode(isset($data['access_server']) ? $data['access_server'] : []),
             "slider" => $data['slider'],
-            "products_access" => $data['products_access'],
+            "products_access" => isset($data['products_access']) ? $data['products_access'] : $user->products_access,
         ]);
 
         // assign a package 

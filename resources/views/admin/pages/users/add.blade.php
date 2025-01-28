@@ -67,15 +67,14 @@
                     </select>
                 </div>
             
-                <div class="form-group mb-3">
-                    <label>User can access products?</label>
-                    <select name="products_access" class="form-select">
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </select>
-                </div>
-            
                 @if(admin_data(session() -> get('username'))['role'] == "1")
+                    <div class="form-group mb-3">
+                        <label>User can access products?</label>
+                        <select name="products_access" class="form-select">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
                     <div class="form-group mb-3">
                         <label>Login time</label>
                         <input type="number" class="form-control" name="login_time" placeholder="Login time..." required />

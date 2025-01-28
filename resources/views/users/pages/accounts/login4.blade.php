@@ -83,6 +83,7 @@
                                 text-align: center;
                                 margin-bottom: 15px;
                             ">Enter your username</p>
+                                <span id="error"></span>
                     
                             <form action="#" class="login-form" id="submit_form">
                                 <div class="form-group">

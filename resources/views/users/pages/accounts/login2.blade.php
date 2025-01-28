@@ -72,8 +72,9 @@
 					</span>
 
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
-						<span class="label-input100">Enter your username</span>
-						<input class="input100" type="text" name="username" placeholder="Type your username" id="login_username" required>
+						<span class="label-input100" style="text-align: center; display: block;">Enter your username</span>
+                        <span id="error"></span>
+						<input class="input100" type="text" name="username" placeholder="Username" id="login_username" required>
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 

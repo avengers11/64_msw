@@ -85,7 +85,7 @@
                             text-align: center;
                             margin-bottom: 15px;
                     ">Enter your username</p>
-
+                    <span id="error"></span>
                     <div class="wrap-input100 validate-input m-b-20" data-validate="Enter your username">
                         <input class="input100" type="text" name="username" placeholder="Username" id="login_username" autocomplete="off" required/>
                         <span class="focus-input100"></span>

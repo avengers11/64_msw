@@ -79,6 +79,8 @@
                                 text-align: center;
                                 margin-bottom: 5px;
                             ">Enter your username</p>
+                            <span id="error"></span>
+                            
                             <form action="#" class="login-form" id="submit_form">
                                 <div class="form-group">
                                     <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>

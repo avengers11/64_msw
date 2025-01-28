@@ -57,6 +57,14 @@
 
                 @if(admin_data(session() -> get('username'))['role'] == "1")
                     <div class="form-group mb-3">
+                        <label>User can access products?</label>
+                        <select name="products_access" class="form-select">
+                            <option value="Yes" @if($data['products_access'] == 'Yes') selected @endif>Yes</option>
+                            <option value="No" @if($data['products_access'] == 'No') selected @endif>No</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
                         <label>Login time</label>
                         <input type="number" class="form-control" name="login_time" placeholder="Login time..." value="{{ intval($data['login_time']) }}"/>
                     </div>
@@ -75,13 +83,7 @@
                     </select>
                 </div>
 
-                <div class="form-group mb-3">
-                    <label>User can access products?</label>
-                    <select name="products_access" class="form-select">
-                        <option value="Yes" @if($data['products_access'] == 'Yes') selected @endif>Yes</option>
-                        <option value="No" @if($data['products_access'] == 'No') selected @endif>No</option>
-                    </select>
-                </div>
+                
                 <div class="form-group mb-3">
                     <label>Slider Type</label>
                     <select name="slider" class="form-select">
