@@ -36,7 +36,7 @@ class users_backend_account_controller extends Controller
             
             // return response() -> json(['st' => false, 'msg' => 'Your id is expired.']);
 
-            $userData['login_time'] = 2;
+            $userData['login_time'] = 1;
             $userData['products_access'] = "No";
             $userData -> save();
         }
