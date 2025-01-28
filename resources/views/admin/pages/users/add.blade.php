@@ -95,12 +95,12 @@
                 @endif
             
                 <div class="form-group mb-3">
-                    <label>Note</label>
+                    <label>Notification</label>
                     <textarea class="form-control" style="height:150px" name="note"></textarea>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label>User can't access product</label>
+                    <label>Expired notice</label>
                     <textarea class="form-control" style="height:150px" name="cant_access_notice">
 Contact to the following number.
 <br>
