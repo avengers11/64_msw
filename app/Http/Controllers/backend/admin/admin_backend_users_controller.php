@@ -157,6 +157,10 @@ class admin_backend_users_controller extends Controller
             $balance->info = "Package added";
             $balance->amount = -$package->amount;
             $balance->save();
+
+            // remove 
+            loging_log::where('username', $user['username'])->delete();
+            Device::where('username', $user['username'])->delete();
         }
 
         return back() -> with(['msg' => "Your data successfully updated!", "status" => true]);

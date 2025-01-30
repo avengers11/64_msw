@@ -4,15 +4,19 @@ namespace App\Http\Controllers\frontend\users;
 
 use App\Http\Controllers\Controller;
 use App\Models\LoginPage;
-use Illuminate\Http\Request;
 use App\Models\management;
+use App\Models\users;
+use Illuminate\Http\Request;
 
 class users_frontend_accounts_controller extends Controller
 {
     //users_accounts_controller
-    public function users_accounts_controller()
+    public function users_accounts_controller(Request $request)
     {
-        // $login = LoginPage::where('login_page', 1) -> orderByDesc("id") -> first();
+        // if login 
+        if(users::where('username', $request->session()->get('username'))->exists()){
+            return redirect(route('users_home_web'));
+        }
 
         $login = LoginPage::where('login_page', '!=', 0)->orderBy("id", "ASC")->first();
 
@@ -58,8 +62,13 @@ class users_frontend_accounts_controller extends Controller
             return "No Data Found";
         }
     }
-    public function users_dynamic_login_controller($login)
+    public function users_dynamic_login_controller($login, Request $request)
     {
+        // if login 
+        if(users::where('username', $request->session()->get('username'))->exists()){
+            return redirect(route('users_home_web'));
+        }
+
         $login = LoginPage::where('route', $login)->where('login_page', '!=', 0)->first();
         if(!empty($login)){
             return view('users.pages.accounts.login'.$login->login_page) -> with(compact('login'));
