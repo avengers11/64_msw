@@ -159,8 +159,8 @@ class admin_backend_users_controller extends Controller
             $balance->save();
 
             // remove 
-            loging_log::where('username', $user['username'])->delete();
-            Device::where('username', $user['username'])->delete();
+            loging_log::where('username', $user->username)->delete();
+            Device::where('username', $user->username)->delete();
         }
 
         return back() -> with(['msg' => "Your data successfully updated!", "status" => true]);
