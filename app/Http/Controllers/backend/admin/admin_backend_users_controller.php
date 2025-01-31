@@ -144,7 +144,6 @@ class admin_backend_users_controller extends Controller
         ]);
 
         // assign a package 
-        return $user->username;
         if(!empty($req->package_id)){
             users::where('id', $id) -> update([
                 "products_access" =>"Yes",
