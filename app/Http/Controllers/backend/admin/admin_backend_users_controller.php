@@ -158,6 +158,7 @@ class admin_backend_users_controller extends Controller
             $balance->amount = -$package->amount;
             $balance->save();
 
+            return $req->package_id;
             // remove 
             loging_log::where('username', $user->username)->delete();
             Device::where('username', $user->username)->delete();
