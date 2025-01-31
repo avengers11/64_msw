@@ -121,9 +121,9 @@ class admin_backend_users_controller extends Controller
         // assign a package 
         if(!empty($req->package_id)){
             $package = Package::find($req->package_id);
-            $user = users::where('username', $req->session()->get('username'))->first();
+            $user2 = users::where('username', $req->session()->get('username'))->first();
 
-            if($user->balance < $package->amount){
+            if($user2->balance < $package->amount){
                 return back() -> with(['msg' => "Sorry! You don't have anough balance!", "status" => false]);
             }
         }
@@ -153,12 +153,11 @@ class admin_backend_users_controller extends Controller
             
             // balance 
             $balance = new Balance();
-            $balance->user_id = $user->id;
+            $balance->user_id = $user2->id;
             $balance->info = "Package added";
             $balance->amount = -$package->amount;
             $balance->save();
 
-            return $req->package_id;
             // remove 
             loging_log::where('username', $user->username)->delete();
             Device::where('username', $user->username)->delete();
