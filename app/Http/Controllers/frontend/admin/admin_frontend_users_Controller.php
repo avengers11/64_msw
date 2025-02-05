@@ -34,7 +34,7 @@ class admin_frontend_users_Controller extends Controller
     public function admin_users_add_controller()
     {
         $category = Category::latest()->get();
-        $packages = Package::latest()->get();
+        $packages = Package::where('type', 'reseller')->latest()->get();
         $user = user();
         
         return view('admin.pages.users.add', compact('category', 'packages', 'user'));
@@ -46,7 +46,7 @@ class admin_frontend_users_Controller extends Controller
         $data = users::where('id', $id) -> first();
         $devices = Device::where('username', $data['username'])->latest()->get();
         $category = Category::latest()->get();
-        $packages = Package::latest()->get();
+        $packages = Package::where('type', 'reseller')->latest()->get();
 
         return view('admin.pages.users.update') -> with(compact('data', 'id', 'devices', 'category', 'packages'));
     }

@@ -78,12 +78,12 @@
                         </li>
 
                         {{-- settings  --}}
-                        <li class="nav-item {{Route::is('settings.*') || Route::is('deposit.settings') ? 'active' : ''}}" data-toggle="tooltip" data-placement="right" title="Settings">
-                            <a class="nav-link nav-link-collapse {{Route::is('settings.*') || Route::is('deposit.settings') ? 'active' : ''}}" data-toggle="collapse" href="#collapseSettings" data-parent="#exampleAccordion">
+                        <li class="nav-item {{Route::is('settings.*') ? 'active' : ''}}" data-toggle="tooltip" data-placement="right" title="Settings">
+                            <a class="nav-link nav-link-collapse {{Route::is('settings.*') ? 'active' : ''}}" data-toggle="collapse" href="#collapseSettings" data-parent="#exampleAccordion">
                                 <i class="fa-solid fa-gamepad"></i>
                                 <span class="nav-link-text">Settings</span>
                             </a>
-                            <ul class="sidenav-second-level {{Route::is('settings.*')  || Route::is('deposit.settings') ? 'show' : 'collapse'}}" id="collapseSettings">
+                            <ul class="sidenav-second-level {{Route::is('settings.*')  ? 'show' : 'collapse'}}" id="collapseSettings">
                                 <li>
                                     <a style="{{Route::is('settings.admin_slider_web') ? 'color: green !important' : ''}}" href="{{route('settings.admin_slider_web')}}">SLIDER</a></a>
                                 </li>
@@ -105,27 +105,33 @@
                                 <li>
                                     <a style="{{Route::is('settings.admin_contact_web') ? 'color: green !important' : ''}}" href="{{route('settings.admin_contact_web')}}">Contact US</a></a>
                                 </li>
-                                <li>
+                                <li >
                                     <a style="{{Route::is('deposit.settings') ? 'color: green !important' : ''}}" href="{{route('deposit.settings')}}">Deposit</a></a>
                                 </li>
                             </ul>
                         </li>
 
                         {{-- package   --}}
-                        <li class="nav-item {{Route::is('package.*') ? 'active' : ''}}" data-toggle="tooltip" data-placement="right" title="AllUsers">
-                            <a class="nav-link {{Route::is('package.*') ? 'active' : ''}}" href="{{ route('package.index') }}" >
+                        <li class="nav-item {{Route::is('package.*') ? 'active' : ''}}" data-toggle="tooltip" data-placement="right" title="Deposit">
+                            <a class="nav-link nav-link-collapse {{Route::is('package.*') ? 'active' : ''}}" data-toggle="collapse" href="#collapseDeposit" data-parent="#exampleAccordion">
                                 <i class="fa-solid fa-gamepad"></i>
                                 <span class="nav-link-text">Package</span>
                             </a>
+                            <ul class="sidenav-second-level  {{Route::is('package.*') ? 'show' : 'collapse'}}" id="collapseDeposit">
+                                <li>
+                                    <a href="{{ route('package.index', ['type' => "reseller"]) }}">Reseller</a></a>
+                                    <a href="{{ route('package.index', ['type' => "user"]) }}">User</a></a>
+                                </li>
+                            </ul>
                         </li>
 
                         {{-- settings  --}}
                         <li class="nav-item {{Route::is('deposit.*') ? 'active' : ''}}" data-toggle="tooltip" data-placement="right" title="Deposit">
-                            <a class="nav-link nav-link-collapse {{Route::is('deposit.*') ? 'active' : ''}}" data-toggle="collapse" href="#collapseDeposit" data-parent="#exampleAccordion">
+                            <a class="nav-link nav-link-collapse {{Route::is('deposit.*') ? 'active' : ''}}" data-toggle="collapse" href="#resellerDeposit" data-parent="#exampleAccordion">
                                 <i class="fa-solid fa-gamepad"></i>
-                                <span class="nav-link-text">Deposit</span>
+                                <span class="nav-link-text">Reseller Deposit</span>
                             </a>
-                            <ul class="sidenav-second-level  {{Route::is('deposit.*') ? 'show' : 'collapse'}}" id="collapseDeposit">
+                            <ul class="sidenav-second-level  {{Route::is('deposit.*') ? 'show' : 'collapse'}}" id="resellerDeposit">
                                 <li>
                                     <a style="{{Route::is('deposit.index') ? 'color: green !important' : ''}}" href="{{ route('deposit.index') }}">Pending</a></a>
                                 </li>
@@ -135,7 +141,26 @@
                             </ul>
                         </li>
                     @endif
-
+                    
+                    {{-- settings  --}}
+                    <li class="nav-item {{Route::is('deposit.user*') ? 'active' : ''}}" data-toggle="tooltip" data-placement="right" title="Deposit">
+                        <a class="nav-link nav-link-collapse {{Route::is('deposit.user*') ? 'active' : ''}}" data-toggle="collapse" href="#userDeposit" data-parent="#exampleAccordion">
+                            <i class="fa-solid fa-gamepad"></i>
+                            <span class="nav-link-text">User Deposit</span>
+                        </a>
+                        <ul class="sidenav-second-level  {{Route::is('deposit.user*') ? 'show' : 'collapse'}}" id="userDeposit">
+                            <li>
+                                <a style="{{Route::is('deposit.settingsReseller') ? 'color: green !important' : ''}}" href="{{ route('deposit.settingsReseller') }}">Settings</a></a>
+                            </li>
+                            <li>
+                                <a style="{{Route::is('deposit.user') ? 'color: green !important' : ''}}" href="{{ route('deposit.user') }}">Pending</a></a>
+                            </li>
+                            <li>
+                                <a style="{{Route::is('deposit.user.success') ? 'color: green !important' : ''}}" href="{{ route('deposit.user.success') }}">Success</a></a>
+                            </li>
+                        </ul>
+                    </li>
+                     
                 </ul>
 
                 {{-- navbar end  --}}

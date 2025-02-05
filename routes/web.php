@@ -42,6 +42,8 @@ Route::middleware(['users'])->group(function () {
 
     Route::get('/server3', [users_frontend_deshbord_controller::class, 'users_livetv_controller']) -> name('users_livetv_web');
     Route::get('/404', [users_frontend_deshbord_controller::class, 'users_404_controller']) -> name('users_404_web');
+
+    Route::post('/process-submit-user', [AdminBackendPackageController::class, 'processSubmitUser']) -> name('processSubmitUser');
 });
 Route::get('/update', [users_frontend_deshbord_controller::class, 'users_update_controller']) -> name('users_update_web');
 
@@ -148,22 +150,29 @@ Route::prefix('admin')->group(function () {
                 Route::get('/delete/{package}', [AdminBackendPackageController::class, 'delete']) -> name('delete');
                 Route::get('/lists', [AdminBackendPackageController::class, 'lists']) -> name('lists');
             });
-
-            Route::get('/deposit', [AdminBackendPackageController::class, 'deposit']) -> name('deposit.index');
         });
 
         // deposit
         Route::prefix('deposit')->name('deposit.')->group(function () {
             Route::any('/settings', [AdminBackendPackageController::class, 'depositSettings']) -> name('settings');
+            Route::any('/settings-reseller', [AdminBackendPackageController::class, 'depositSettingsReseller']) -> name('settingsReseller');
             Route::get('/process', [AdminBackendPackageController::class, 'process']) -> name('process');
             Route::post('/process-submit', [AdminBackendPackageController::class, 'processSubmit']) -> name('processSubmit');
 
+            Route::get('/', [AdminBackendPackageController::class, 'deposit']) -> name('index');
             Route::get('/success', [AdminBackendPackageController::class, 'depositSuccess']) -> name('success');
             Route::get('/add/{user}', [AdminBackendPackageController::class, 'addDeposit']) -> name('add');
             Route::post('/store', [AdminBackendPackageController::class, 'storeDeposit']) -> name('store');
             Route::get('/accept/{deposit}', [AdminBackendPackageController::class, 'acceptDeposit']) -> name('accept');
             Route::get('/delete/{deposit}', [AdminBackendPackageController::class, 'deleteDeposit']) -> name('delete');
+
+            // user 
+            Route::get('/user', [AdminBackendPackageController::class, 'depositUser']) -> name('user');
+            Route::get('/success/user', [AdminBackendPackageController::class, 'depositSuccessUser']) -> name('user.success');
+            Route::get('/accept/user/{deposit}', [AdminBackendPackageController::class, 'acceptDepositUser']) -> name('user.accept');
+            Route::get('/delete/user/{deposit}', [AdminBackendPackageController::class, 'deleteDepositUser']) -> name('user.delete');
         });
-        
     });
+
+    
 });

@@ -12,6 +12,7 @@ use App\Models\users;
 use App\Models\live_tv;
 use App\Models\management;
 use App\Models\download_links;
+use App\Models\Package;
 use App\Models\Sliders2;
 
 class users_frontend_deshbord_controller extends Controller
@@ -61,11 +62,15 @@ class users_frontend_deshbord_controller extends Controller
         }else{
             $slider = Sliders2::orderBy('id', 'DESC') -> get();
         }
-
         // where
         $where = "server1";
 
-        return view('users.pages.home.home') -> with(compact('products', 'slider', 'userData', 'where', 'management', 'cat', 'id', 'cat_f', 'cat_r', 'creator'));
+        if($userData['expired'] < time()){
+            $packages = Package::where('type', 'user')->latest()->get();
+            return view('users.pages.home.expired') -> with(compact('creator', 'packages'));
+        }else{
+            return view('users.pages.home.home') -> with(compact('products', 'slider', 'userData', 'where', 'management', 'cat', 'id', 'cat_f', 'cat_r', 'creator'));
+        }
     }
 
     // users_note_controller
