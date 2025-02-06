@@ -21,7 +21,8 @@
 
         <form method="post" action="{{ route('package.store') }}">
             @csrf
-
+            <input type="hidden" name="type" value="{{ $type }}">
+            
             <div class="form-group mb-3">
                 <label>Package name</label>
                 <input type="text" class="form-control" name="name" />

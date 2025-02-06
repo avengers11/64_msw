@@ -17,7 +17,7 @@
 <div class="card mb-3">
     <div class="card-header">
         <i class="fa fa-table"></i> DATA TABLE
-        <a href="{{ route('package.add') }}" class="btn btn-success">ADD NEW</a>
+        <a href="{{ route('package.add', ["type" => $type]) }}" class="btn btn-success">ADD NEW</a>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -47,7 +47,7 @@
                             <td>{{ $item['validity'] }}</td>
                             <td>
                                 <a href="{{ route('package.delete', $item) }}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
-                                <a href="{{ route('package.edit', $item) }}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ route('package.edit', ["package" => $item, "type" => $type]) }}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
                             </td>
                         </tr>
                     @endforeach

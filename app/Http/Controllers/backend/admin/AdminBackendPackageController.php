@@ -26,13 +26,16 @@ class AdminBackendPackageController extends Controller
     */
     public function index(Request $request)
     {
-        $dataType = Package::latest() -> get();
+        $type = $request->type;
+        $dataType = Package::latest()->where("type", $type) -> get();
 
-        return view('admin.pages.package.index', compact('dataType'));
+        return view('admin.pages.package.index', compact('dataType', 'type'));
     }
     public function add(Request $request)
     {
-        return view('admin.pages.package.add');
+        $type = $request->type;
+
+        return view('admin.pages.package.add', compact('type'));
     }
     public function store(Request $request)
     {
@@ -41,13 +44,16 @@ class AdminBackendPackageController extends Controller
         $package->amount = $request->amount;
         $package->login_time = $request->login_time;
         $package->validity = $request->validity;
+        $package->type = $request->type;
         $package->save();
 
-        return redirect(route('package.index'))-> with('msg', 'Your data successfully added!');
+        return redirect(route('package.index', ["type" => $request->type]))-> with('msg', 'Your data successfully added!');
     }
-    public function edit(Package $package)
+    public function edit(Package $package, Request $request)
     {
-        return view('admin.pages.package.edit',compact('package'));
+        $type = $request->type;
+
+        return view('admin.pages.package.edit',compact('package', 'type'));
     }
     public function update(Package $package, Request $request)
     {
@@ -57,7 +63,7 @@ class AdminBackendPackageController extends Controller
         $package->validity = $request->validity;
         $package->save();
 
-        return redirect(route('package.index'))-> with('msg', 'Your data successfully updated!');
+        return redirect(route('package.index', ["type" => $request->type]))-> with('msg', 'Your data successfully updated!');
     }
     public function delete(Package $package)
     {

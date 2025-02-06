@@ -27,6 +27,7 @@
 
         <form method="post" action="{{ route('package.update', $package) }}">
             @csrf
+            <input type="hidden" name="type" value="{{ $type }}">
 
             <div class="form-group mb-3">
                 <label>Package name</label>
