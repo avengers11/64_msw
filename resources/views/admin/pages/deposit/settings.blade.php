@@ -16,7 +16,7 @@
         <div class="card-body">
             <h5 class="card-title mb-4">Update Payment Method</h5>
     
-            <form method="post" action="" class="row">
+            <form method="post" action="" class="row" enctype="multipart/form-data">
                 @csrf
     
                 <div class="form-group mb-3 col-6">
@@ -58,6 +58,11 @@
                     <input type="text" class="form-control" value="{{ $dataType->deposit_upay_info }}" name="deposit_upay_info" />
                 </div>
 
+                <div class="form-group mb-3 col-12">
+                    <label>Deposit Video</label>
+                    <input type="file" class="form-control" value="" name="deposit_info_video" />
+                    <video src="{{ asset("images/management/$dataType->deposit_info_video") }}" style="height: 100px; margin-top:5px" controls></video>
+                </div>
                 <div class="form-group mb-3 col-12">
                     <label>Deposit Submit Info</label>
                     <textarea name="deposit_submit_info" class="form-control" id="" cols="30" rows="10">{{ $dataType->deposit_submit_info }}</textarea>

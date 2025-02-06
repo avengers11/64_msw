@@ -40,33 +40,6 @@
                     <input type="text" class="form-control" name="email" placeholder="email..." value="" />
                 </div>
 
-                <div class="form-group mb-3">
-                    <label>User 18+??</label>
-                    <select name="user_adult" class="form-select">
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-            
-                <div class="form-group mb-3">
-                    <label>Access details</label>
-                    <br>
-                    <select name="access_server[]" class="form-control selectpicker" multiple aria-label="Default select example" data-live-search="true">
-                        <option value="0" selected>All</option>
-                        @foreach ($category as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            
-                <div class="form-group mb-3">
-                    <label>Slider Type</label>
-                    <select name="slider" class="form-select">
-                        <option value="Slider 1">Slider 1</option>
-                        <option value="Slider 2">Slider 2</option>
-                    </select>
-                </div>
-            
                 @if(admin_data(session() -> get('username'))['role'] == "1")
                     <div class="form-group mb-3">
                         <label>User can access products?</label>
@@ -90,6 +63,34 @@
                         <select name="role" class="form-select">
                             <option value="0">USERS</option>
                             <option value="2">RESELLER</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group mb-3">
+                        <label>User 18+??</label>
+                        <select name="user_adult" class="form-select">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                
+                    <div class="form-group mb-3">
+                        <label>Access details</label>
+                        <br>
+                        <select name="access_server[]" class="form-control selectpicker" multiple aria-label="Default select example" data-live-search="true">
+                            <option value="0" selected>All</option>
+                            @foreach ($category as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                
+                    <div class="form-group mb-3">
+                        <label>Slider Type</label>
+                        <select name="slider" class="form-select">
+                            <option value="Slider 1">Slider 1</option>
+                            <option value="Slider 2">Slider 2</option>
                         </select>
                     </div>
                 @endif

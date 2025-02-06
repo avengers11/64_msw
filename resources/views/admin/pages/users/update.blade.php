@@ -72,46 +72,45 @@
                         <label>Expired date</label>
                         <input type="text" class="form-control" name="expired" placeholder="Expired date..." value="{{ ($data['expired'] - time())/86400 }}"/>
                     </div>
+
+                    <div class="form-group mb-3">
+                        <label>User 18+??</label>
+                        <select name="user_adult" class="form-select" style="text-transform: capitalize;">
+                            <option value="{{$data['user_adult']}}">{{$data['user_adult']}}</option>
+                            <option value="yes" class="@if($data['user_adult'] == "yes") d-none @endif">Yes</option>
+                            <option value="no" class="@if($data['user_adult'] == "no") d-none @endif">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Slider Type</label>
+                        <select name="slider" class="form-select">
+                            <option value="{{$data['slider']}}">{{$data['slider']}}</option>
+                            <option value="Slider 1" class="@if($data['slider'] == "Slider 1") d-none @endif">Slider 1</option>
+                            <option value="Slider 2" class="@if($data['slider'] == "Slider 2") d-none @endif">Slider 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Access details</label>
+                        <br>
+                        <select name="access_server[]" class="form-control selectpicker" multiple aria-label="Default select example" data-live-search="true">
+                            @php
+                                $severArray = !empty(json_decode($data['access_server'])) ? json_decode($data['access_server']) : [];
+                            @endphp
+    
+                            @if (in_array(0, $severArray))
+                                <option value="0" selected>All</option>
+                            @else
+                                <option value="0">All</option>
+                            @endif
+                            @foreach ($category as $item)
+    
+                                <option @if(in_array($item->id, $severArray)) selected @endif value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 @endif
 
-                <div class="form-group mb-3">
-                    <label>User 18+??</label>
-                    <select name="user_adult" class="form-select" style="text-transform: capitalize;">
-                        <option value="{{$data['user_adult']}}">{{$data['user_adult']}}</option>
-                        <option value="yes" class="@if($data['user_adult'] == "yes") d-none @endif">Yes</option>
-                        <option value="no" class="@if($data['user_adult'] == "no") d-none @endif">No</option>
-                    </select>
-                </div>
-
                 
-                <div class="form-group mb-3">
-                    <label>Slider Type</label>
-                    <select name="slider" class="form-select">
-                        <option value="{{$data['slider']}}">{{$data['slider']}}</option>
-                        <option value="Slider 1" class="@if($data['slider'] == "Slider 1") d-none @endif">Slider 1</option>
-                        <option value="Slider 2" class="@if($data['slider'] == "Slider 2") d-none @endif">Slider 2</option>
-                    </select>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label>Access details</label>
-                    <br>
-                    <select name="access_server[]" class="form-control selectpicker" multiple aria-label="Default select example" data-live-search="true">
-                        @php
-                            $severArray = !empty(json_decode($data['access_server'])) ? json_decode($data['access_server']) : [];
-                        @endphp
-
-                        @if (in_array(0, $severArray))
-                            <option value="0" selected>All</option>
-                        @else
-                            <option value="0">All</option>
-                        @endif
-                        @foreach ($category as $item)
-
-                            <option @if(in_array($item->id, $severArray)) selected @endif value="{{$item->id}}">{{$item->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
 
                 <div class="form-group mb-3">
                     <label>Notification</label>

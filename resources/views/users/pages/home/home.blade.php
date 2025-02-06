@@ -233,7 +233,7 @@
 
                 <div class="input-group">
                     <label for="screenshot">Upload Screenshot of Payment:</label>
-                    <input type="file" id="screenshot" name="file" accept="image/*" required>
+                    <input type="file" id="screenshot" name="file" required>
                 </div>
 
                 <div class="input-group" style="display: flex; gap:10px">
@@ -242,15 +242,18 @@
                 </div>
             </form>
         </div>
-    </div>
 
-    <div id="tutorialModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>How to Buy Package</h2>
-            <iframe id="ytVideo" width="100%" height="400" src="https://www.youtube.com/embed/YiAB7z4aym0" style="border-radius: 12px;" allowfullscreen></iframe>
+
+        <div id="tutorialModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>How to Buy Package</h2>
+                <video src="{{ asset("images/management/$management->deposit_info_video") }}" controls></video>
+            </div>
         </div>
     </div>
+
+    
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" ></script>

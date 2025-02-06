@@ -119,6 +119,10 @@ $(document).ready(function(){
         let number = selectedMethod.attr("data-number");
         let method = selectedMethod.val();
         let price = selectedPackage.attr("data-amount");
+        if(selectedPackage.val() == ""){
+            $("#payment-info-label").html("");
+            return;
+        }
 
         // check the method 
         if(method == ""){
@@ -140,30 +144,12 @@ $(document).ready(function(){
     const btn = document.getElementById("tutorialBtn");
     const span = document.getElementsByClassName("close")[0];
     const iframe = document.getElementById('ytVideo');
-    const originalSrc = iframe.src;
-
-    function stopVideo() {
-        iframe.src = '';
-    }
-
-    function playVideo() {
-        iframe.src = originalSrc;
-    }
 
     btn.onclick = () => {
         modal.style.display = "block";
-        playVideo();
     };
 
     span.onclick = () => {
         modal.style.display = "none";
-        stopVideo();
-    };
-
-    window.onclick = (event) => {
-        if (event.target == modal) {
-            modal.style.display = "none";
-            stopVideo();
-        }
     };
 });

@@ -103,6 +103,14 @@ class AdminBackendPackageController extends Controller
 
         // submit
         if($request->isMethod('POST')){
+            if(!empty($request -> file('deposit_info_video'))){
+                $pic = $request -> file('deposit_info_video');
+                $pic_name = time().".".$pic -> getClientOriginalExtension();
+                $pic -> move(public_path("images/management"), $pic_name);
+            }else{
+                $pic_name = $dataType->deposit_info_video;
+            }
+
             $dataType->deposit_bkash_number = $request->deposit_bkash_number;
             $dataType->deposit_bkash_info = $request->deposit_bkash_info;
             $dataType->deposit_nagad_number = $request->deposit_nagad_number;
@@ -112,6 +120,7 @@ class AdminBackendPackageController extends Controller
             $dataType->deposit_upay_number = $request->deposit_upay_number;
             $dataType->deposit_upay_info = $request->deposit_upay_info;
             $dataType->deposit_submit_info = $request->deposit_submit_info;
+            $dataType->deposit_info_video = $pic_name;
             $dataType->save();
 
             return back()-> with('msg', 'Your deposit successfully added!');
@@ -235,12 +244,12 @@ class AdminBackendPackageController extends Controller
     {
         $user = users::find($deposit->user_id);
 
-        // balance 
-        users::where('id', $user->id) -> update([
-            "products_access" =>"Yes",
-            "login_time" => $deposit->package->login_time,
-            "expired" => time()+($deposit->package->validity*86400)
-        ]);
+        // // user 
+        // users::where('id', $user->id) -> update([
+        //     "products_access" =>"Yes",
+        //     "login_time" => $deposit->package->login_time,
+        //     "expired" => time()+($deposit->package->validity*86400)
+        // ]);
 
         // depost  
         $deposit->status = 1;
