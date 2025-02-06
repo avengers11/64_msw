@@ -62,15 +62,15 @@ class users_frontend_deshbord_controller extends Controller
         }else{
             $slider = Sliders2::orderBy('id', 'DESC') -> get();
         }
+        if($userData['expired'] < time()){
+            $slider = Sliders2::orderBy('id', 'DESC') -> get();
+        }
         // where
         $where = "server1";
 
-        if($userData['expired'] < time()){
-            $packages = Package::where('type', 'user')->latest()->get();
-            return view('users.pages.home.expired') -> with(compact('creator', 'packages'));
-        }else{
-            return view('users.pages.home.home') -> with(compact('products', 'slider', 'userData', 'where', 'management', 'cat', 'id', 'cat_f', 'cat_r', 'creator'));
-        }
+        $packages = Package::where('type', 'user')->latest()->get();
+        return view('users.pages.home.home') -> with(compact('products', 'slider', 'userData', 'where', 'management', 'cat', 'id', 'cat_f', 'cat_r', 'creator', 'packages'));
+        
     }
 
     // users_note_controller

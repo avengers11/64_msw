@@ -180,17 +180,77 @@
         
     </div>
    
-    
+    <input type="hidden" id="where" value="{{$where}}" />
 
-    <div id="hidden_wrapper" class="d-none">
-        <div class="container">
-            <h2 class="title copy-wrapper">
-                {!! $userData['cant_access_notice'] !!}
-            </h2>
+
+
+
+
+
+    {{-- hidden popup  --}}
+    <div id="hidden_wrapper" class="expired-form-container d-none">
+        <div class="box">
+            <button id="tutorialBtn">How To Buy Package</button>
+            <form action="{{ route("processSubmitUser") }}" method="POST" enctype="multipart/form-data">
+                @csrf 
+
+                <div class="input-group">
+                    <label for="package">Select a package of your choice:</label>
+                    <select id="package" name="package" required>
+                        <option value="">Select a package</option>
+                        @foreach ($packages as $item)
+                            <option value="{{ $item->id }}" data-amount="{{ $item->amount }}">{{ $item->validity }} Days - {{ $item->amount }}৳</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="payment-method">Select a payment method of your choice:</label>
+                    <select id="payment-method" name="method" required>
+                        @if (!empty($creator->deposit_bkash_number))
+                            <option value="bkash" data-info="{{ $creator->deposit_bkash_info }}" data-number="{{ $creator->deposit_bkash_number }}">BKash</option>
+                        @endif
+                        @if (!empty($creator->deposit_nagad_number))
+                            <option value="nagad" data-info="{{ $creator->deposit_nagad_info }}" data-number="{{ $creator->deposit_nagad_number }}">Nagad</option>
+                        @endif
+                        @if (!empty($creator->deposit_rocket_number))
+                            <option value="rocket" data-info="{{ $creator->deposit_rocket_info }}" data-number="{{ $creator->deposit_rocket_number }}">Rocket</option>
+                        @endif
+                        @if (!empty($creator->deposit_upay_number))
+                            <option value="upay" data-info="{{ $creator->deposit_upay_info }}" data-number="{{ $creator->deposit_upay_number }}">Upay</option>
+                        @endif
+                    </select>
+                </div>
+
+                <div id="payment-info" class="payment-info">
+                    <label id="payment-info-label"></label>
+                </div>
+
+                <div class="input-group">
+                    <label for="transaction-id">Enter the Payment Transaction ID:</label>
+                    <input type="text" id="transaction-id" name="tranx_id" placeholder="Transaction ID" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="screenshot">Upload Screenshot of Payment:</label>
+                    <input type="file" id="screenshot" name="file" accept="image/*" required>
+                </div>
+
+                <div class="input-group" style="display: flex; gap:10px">
+                    <button style="width: 45%; background: #017501" type="submit" class="submit-btn">Submit</button>
+                    <button style="width: 45%" type="button" class="submit-btn hidden_wrapper_close">Close</button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <input type="hidden" id="where" value="{{$where}}" />
+    <div id="tutorialModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>How to Buy Package</h2>
+            <iframe id="ytVideo" width="100%" height="400" src="https://www.youtube.com/embed/YiAB7z4aym0" style="border-radius: 12px;" allowfullscreen></iframe>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" ></script>

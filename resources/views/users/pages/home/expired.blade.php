@@ -11,18 +11,8 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(45deg, #dc2a2a, #ff8e8e);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            flex-direction: column;
-        }
 
-        .form-container {
+        .expired-form-container {
             background: #DC2A2A;
             border-radius: 16px;
             width: 100%;
@@ -31,11 +21,14 @@
             padding: 40px;
             text-align: center;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            margin: 20px;
+            position: absolute;
+            top: 26.4rem;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        .form-container:hover {
-            transform: translateY(-5px);
+        .expired-form-container:hover {
+            /* transform: translateY(-5px); */
             box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
         }
 
@@ -188,9 +181,8 @@
         }
 
         @media (max-width: 480px) {
-            .form-container {
+            .expired-form-container {
                 padding: 25px;
-                margin: 15px;
             }
 
             h2 {
@@ -205,10 +197,9 @@
     </style>
 </head>
 <body>
-    <div class="form-container">
+    <div class="expired-form-container">
         <div class="box">
             <button id="tutorialBtn">How To Buy Package</button>
-
             <form action="{{ route("processSubmitUser") }}" method="POST" enctype="multipart/form-data">
                 @csrf 
 
@@ -254,8 +245,9 @@
                     <input type="file" id="screenshot" name="file" accept="image/*" required>
                 </div>
 
-                <div class="input-group">
-                    <button type="submit" class="submit-btn">Submit Deposit</button>
+                <div class="input-group" style="display: flex; gap:10px">
+                    <button type="submit" style="background: #017501" class="submit-btn">Submit</button>
+                    <button type="button" class="submit-btn">Close</button>
                 </div>
             </form>
         </div>

@@ -77,17 +77,17 @@ $(".products_access").click(function () {
 });
 
 
-$(".hidden_wrapper").click(function () {
+$(".hidden_wrapper_close").click(function () {
     $("#hidden_wrapper").addClass('d-none');
 });
 
 
 
-$("#hidden_wrapper").click(function () {
-    setTimeout(() => {
-        $("#hidden_wrapper").addClass('d-none');
-    }, 500);
-});
+// $("#hidden_wrapper").click(function () {
+//     setTimeout(() => {
+//         $("#hidden_wrapper").addClass('d-none');
+//     }, 500);
+// });
 
 
 $(document).on("click", ".copy-wrapper", function(){
@@ -106,3 +106,64 @@ $(document).on("click", ".copy-wrapper", function(){
         $(this).find(".copy-number").text(textInput);
     }, 200);
 })
+
+
+
+// home js 
+$(document).ready(function(){
+    const depositInfo = () => {
+        let selectedMethod = $("#payment-method option:selected");
+        let selectedPackage = $("#package option:selected");
+        
+        let info = selectedMethod.attr("data-info");
+        let number = selectedMethod.attr("data-number");
+        let method = selectedMethod.val();
+        let price = selectedPackage.attr("data-amount");
+
+        // check the method 
+        if(method == ""){
+            $("#payment-info-label").html("");
+            return;
+        }
+
+        $("#payment-info-label").html(`
+            ${info} <strong> ${price}৳ </strong> to <strong style="text-transform: uppercase;">${method}</strong> Number: 
+            <strong style="color: #dc2a2a">${number}</strong>
+        `);
+    }
+    $("#package, #payment-method").change(function(){
+        depositInfo();
+    });
+
+    // Video Control
+    const modal = document.getElementById("tutorialModal");
+    const btn = document.getElementById("tutorialBtn");
+    const span = document.getElementsByClassName("close")[0];
+    const iframe = document.getElementById('ytVideo');
+    const originalSrc = iframe.src;
+
+    function stopVideo() {
+        iframe.src = '';
+    }
+
+    function playVideo() {
+        iframe.src = originalSrc;
+    }
+
+    btn.onclick = () => {
+        modal.style.display = "block";
+        playVideo();
+    };
+
+    span.onclick = () => {
+        modal.style.display = "none";
+        stopVideo();
+    };
+
+    window.onclick = (event) => {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            stopVideo();
+        }
+    };
+});
