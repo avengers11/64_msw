@@ -356,6 +356,10 @@ div#hidden_wrapper {
         max-width: 700px;
         position: relative;
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        iframe{
+            height: auto;
+            width: 100%;
+        }
     }
 
     .close {

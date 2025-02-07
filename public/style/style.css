@@ -324,6 +324,10 @@ div#hidden_wrapper .container .title {
   position: relative;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
+.expired-form-container .modal-content iframe {
+  height: auto;
+  width: 100%;
+}
 .expired-form-container .close {
   color: #636e72;
   position: absolute;

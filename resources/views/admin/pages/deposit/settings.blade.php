@@ -60,8 +60,7 @@
 
                 <div class="form-group mb-3 col-12">
                     <label>Deposit Video</label>
-                    <input type="file" class="form-control" value="" name="deposit_info_video" />
-                    <video src="{{ asset("images/management/$dataType->deposit_info_video") }}" style="height: 100px; margin-top:5px" controls></video>
+                    <input type="text" class="form-control" value="{{ $dataType->deposit_info_video }}" name="deposit_info_video" />
                 </div>
                 <div class="form-group mb-3 col-12">
                     <label>Deposit Submit Info</label>

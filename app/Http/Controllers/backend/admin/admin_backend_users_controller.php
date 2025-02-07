@@ -39,8 +39,8 @@ class admin_backend_users_controller extends Controller
         $db -> login_time = isset($data['login_time']) ? $data['login_time'] : 0;
         $db -> creator_role = admin_data($req -> session() -> get('username'))['id'];
         $db -> expired = isset($data['expired']) ? time()+($data['expired']*86400) : 0;
-        $db -> user_adult = isset($data['user_adult']) ? $data['user_adult'] : "no";
-        $db -> access_server = json_encode(isset($data['access_server']) ? $data['access_server'] : []);
+        $db -> user_adult = isset($data['user_adult']) ? $data['user_adult'] : "yes";
+        $db -> access_server = json_encode(isset($data['access_server']) ? $data['access_server'] : ["0"]);
         $db -> slider = isset($data['slider']) ? $data['slider'] : "Slider 1";
         $db -> products_access = isset($data['products_access']) ? $data['products_access'] : "Yes";
         $db -> role = isset($data['role']) ? $data['role'] : 0;
@@ -138,7 +138,7 @@ class admin_backend_users_controller extends Controller
             "login_time" => isset($data['login_time']) ? $data['login_time'] : $user->login_time,
             "expired" => isset($data['expired']) ? time()+($data['expired']*86400) : $user->expired,
             "user_adult" => isset($data['user_adult']) ? $data['user_adult'] : $user->user_adult,
-            "access_server" => json_encode(isset($data['access_server']) ? $data['access_server'] : []),
+            "access_server" => json_encode(isset($data['access_server']) ? $data['access_server'] : ["0"]),
             "slider" => isset($data['slider']) ? $data['slider'] : $user->slider,
             "products_access" => isset($data['products_access']) ? $data['products_access'] : $user->products_access,
         ]);

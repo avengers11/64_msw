@@ -46,6 +46,25 @@
     </style>
 </head>
 <body>
+
+    @if (session()->has('msg'))
+    <div class="alert alert-primary d-flex align-items-center" role="alert"
+        style="
+            position: fixed;
+            right: 5px;
+            top: 5px;
+            z-index: 999;
+        "
+        >
+        <a href=""><img style="height: 23px; margin-right: 10px;" src="{{ asset("images/icons/close.png") }}" alt=""></a>
+        <div>
+          {{ session()->get('msg') }}
+        </div>
+      </div>
+    @endif
+    
+
+
     @if(admin_data(session() -> get('username'))['role'] == "2")
         <a href="{{ url("/admin") }}"><img class="add-to-cart-page" src="{{ asset("images\icons\add-cart.webp") }}" alt=""></a>
     @endif
@@ -183,7 +202,7 @@
     <input type="hidden" id="where" value="{{$where}}" />
 
 
-
+    
 
 
 
@@ -191,56 +210,62 @@
     <div id="hidden_wrapper" class="expired-form-container d-none">
         <div class="box">
             <button id="tutorialBtn">How To Buy Package</button>
-            <form action="{{ route("processSubmitUser") }}" method="POST" enctype="multipart/form-data">
-                @csrf 
 
-                <div class="input-group">
-                    <label for="package">Select a package of your choice:</label>
-                    <select id="package" name="package" required>
-                        <option value="">Select a package</option>
-                        @foreach ($packages as $item)
-                            <option value="{{ $item->id }}" data-amount="{{ $item->amount }}">{{ $item->validity }} Days - {{ $item->amount }}৳</option>
-                        @endforeach
-                    </select>
-                </div>
+            @if (!\App\Models\DepositPackage::where("user_id", $userData->id)->where("status", 0)->exists())
+                <form action="{{ route("processSubmitUser") }}" method="POST" enctype="multipart/form-data">
+                    @csrf 
 
-                <div class="input-group">
-                    <label for="payment-method">Select a payment method of your choice:</label>
-                    <select id="payment-method" name="method" required>
-                        @if (!empty($creator->deposit_bkash_number))
-                            <option value="bkash" data-info="{{ $creator->deposit_bkash_info }}" data-number="{{ $creator->deposit_bkash_number }}">BKash</option>
-                        @endif
-                        @if (!empty($creator->deposit_nagad_number))
-                            <option value="nagad" data-info="{{ $creator->deposit_nagad_info }}" data-number="{{ $creator->deposit_nagad_number }}">Nagad</option>
-                        @endif
-                        @if (!empty($creator->deposit_rocket_number))
-                            <option value="rocket" data-info="{{ $creator->deposit_rocket_info }}" data-number="{{ $creator->deposit_rocket_number }}">Rocket</option>
-                        @endif
-                        @if (!empty($creator->deposit_upay_number))
-                            <option value="upay" data-info="{{ $creator->deposit_upay_info }}" data-number="{{ $creator->deposit_upay_number }}">Upay</option>
-                        @endif
-                    </select>
-                </div>
+                    <div class="input-group">
+                        <label for="package">Select a package of your choice:</label>
+                        <select id="package" name="package" required>
+                            <option value="">Select a package</option>
+                            @foreach ($packages as $item)
+                                <option value="{{ $item->id }}" data-amount="{{ $item->amount }}">{{ $item->validity }} Days - {{ $item->amount }}৳</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                <div id="payment-info" class="payment-info">
-                    <label id="payment-info-label"></label>
-                </div>
+                    <div class="input-group">
+                        <label for="payment-method">Select a payment method of your choice:</label>
+                        <select id="payment-method" name="method" required>
+                            @if (!empty($creator->deposit_bkash_number))
+                                <option value="bkash" data-info="{{ $creator->deposit_bkash_info }}" data-number="{{ $creator->deposit_bkash_number }}">BKash</option>
+                            @endif
+                            @if (!empty($creator->deposit_nagad_number))
+                                <option value="nagad" data-info="{{ $creator->deposit_nagad_info }}" data-number="{{ $creator->deposit_nagad_number }}">Nagad</option>
+                            @endif
+                            @if (!empty($creator->deposit_rocket_number))
+                                <option value="rocket" data-info="{{ $creator->deposit_rocket_info }}" data-number="{{ $creator->deposit_rocket_number }}">Rocket</option>
+                            @endif
+                            @if (!empty($creator->deposit_upay_number))
+                                <option value="upay" data-info="{{ $creator->deposit_upay_info }}" data-number="{{ $creator->deposit_upay_number }}">Upay</option>
+                            @endif
+                        </select>
+                    </div>
 
-                <div class="input-group">
-                    <label for="transaction-id">Enter the Payment Transaction ID:</label>
-                    <input type="text" id="transaction-id" name="tranx_id" placeholder="Transaction ID" required>
-                </div>
+                    <div id="payment-info" class="payment-info">
+                        <label id="payment-info-label"></label>
+                    </div>
 
-                <div class="input-group">
-                    <label for="screenshot">Upload Screenshot of Payment:</label>
-                    <input type="file" id="screenshot" name="file" required>
-                </div>
+                    <div class="input-group">
+                        <label for="transaction-id">Enter the Payment Transaction ID:</label>
+                        <input type="text" id="transaction-id" name="tranx_id" placeholder="Transaction ID" required>
+                    </div>
 
-                <div class="input-group" style="display: flex; gap:10px">
-                    <button style="width: 45%; background: #017501" type="submit" class="submit-btn">Submit</button>
-                    <button style="width: 45%" type="button" class="submit-btn hidden_wrapper_close">Close</button>
-                </div>
-            </form>
+                    <div class="input-group">
+                        <label for="screenshot">Upload Screenshot of Payment:</label>
+                        <input type="file" id="screenshot" name="file" required>
+                    </div>
+
+                    <div class="input-group" style="display: flex; gap:10px">
+                        <button style="width: 45%; background: #017501" type="submit" class="submit-btn">Submit</button>
+                        <button style="width: 45%" type="button" class="submit-btn hidden_wrapper_close">Close</button>
+                    </div>
+                </form>
+            @else
+                <label for="package">You have already a pendning order! Please wait</label>
+            @endif
+           
         </div>
 
 
@@ -248,7 +273,7 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>How to Buy Package</h2>
-                <video src="{{ asset("images/management/$management->deposit_info_video") }}" controls></video>
+                @php echo  $management->deposit_info_video; @endphp
             </div>
         </div>
     </div>

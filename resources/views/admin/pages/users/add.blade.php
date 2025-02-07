@@ -37,7 +37,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label>Email</label>
-                    <input type="text" class="form-control" name="email" placeholder="email..." value="" />
+                    <input type="text" class="form-control" name="email" placeholder="email..." value="user-mail-address@f5.si" />
                 </div>
 
                 @if(admin_data(session() -> get('username'))['role'] == "1")
@@ -100,7 +100,7 @@
                     <textarea class="form-control" style="height:150px" name="note"></textarea>
                 </div>
 
-                <div class="form-group mb-3">
+                <div class="form-group mb-3 d-none">
                     <label>Expired notice</label>
                     <textarea class="form-control" style="height:150px" name="cant_access_notice">
 Contact to the following number.

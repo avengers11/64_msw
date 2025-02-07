@@ -103,13 +103,6 @@ class AdminBackendPackageController extends Controller
 
         // submit
         if($request->isMethod('POST')){
-            if(!empty($request -> file('deposit_info_video'))){
-                $pic = $request -> file('deposit_info_video');
-                $pic_name = time().".".$pic -> getClientOriginalExtension();
-                $pic -> move(public_path("images/management"), $pic_name);
-            }else{
-                $pic_name = $dataType->deposit_info_video;
-            }
 
             $dataType->deposit_bkash_number = $request->deposit_bkash_number;
             $dataType->deposit_bkash_info = $request->deposit_bkash_info;
@@ -120,7 +113,7 @@ class AdminBackendPackageController extends Controller
             $dataType->deposit_upay_number = $request->deposit_upay_number;
             $dataType->deposit_upay_info = $request->deposit_upay_info;
             $dataType->deposit_submit_info = $request->deposit_submit_info;
-            $dataType->deposit_info_video = $pic_name;
+            $dataType->deposit_info_video = $request->deposit_info_video;;
             $dataType->save();
 
             return back()-> with('msg', 'Your deposit successfully added!');
@@ -229,14 +222,14 @@ class AdminBackendPackageController extends Controller
     public function depositUser(Request $request)
     {
         $user = user();
-        $dataType = DepositPackage::latest()->where('status', 0)->where('parent_id', $user->creator_role)->paginate(10);
+        $dataType = DepositPackage::latest()->where('status', 0)->where('parent_id', $user->id)->paginate(10);
 
         return view('admin.pages.deposit.user.index', compact('dataType'));
     }
     public function depositSuccessUser(Request $request)
     {
         $user = user();
-        $dataType = DepositPackage::latest()->where('status', 1)->where('parent_id', $user->creator_role)->paginate(10);
+        $dataType = DepositPackage::latest()->where('status', 1)->where('parent_id', $user->id)->paginate(10);
 
         return view('admin.pages.deposit.user.index', compact('dataType'));
     }
@@ -308,7 +301,7 @@ class AdminBackendPackageController extends Controller
         ];
         Mail::to($createUser->email)->send(new PaymentNotification($details));
 
-        return back()-> with('msg', "Your deposit was successfully submitted. Please wait for approval.");
+        return back()-> with('msg', "When user deposit complete then show a message....Thank you for your buy packeg! It’s currently on-hold until we confirm that payment has been received.");
     }
     public function depositSettingsReseller(Request $request)
     {
