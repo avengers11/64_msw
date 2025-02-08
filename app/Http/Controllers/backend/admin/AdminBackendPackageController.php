@@ -301,7 +301,7 @@ class AdminBackendPackageController extends Controller
         ];
         Mail::to($createUser->email)->send(new PaymentNotification($details));
 
-        return back()-> with('msg', "When user deposit complete then show a message....Thank you for your buy packeg! It’s currently on-hold until we confirm that payment has been received.");
+        return back()-> with('msg', "Thank you for your buy packeg! It’s currently on-hold until we confirm that payment has been received.");
     }
     public function depositSettingsReseller(Request $request)
     {
