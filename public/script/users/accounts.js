@@ -97,4 +97,14 @@ $(document).on("click", ".copy-wrapper", function(){
     setTimeout(() => {
         $(this).find(".copy-number").text(textInput);
     }, 200);
-})
+});
+
+// select Text
+function selectText() {
+    var element = document.getElementById("number");
+    var range = document.createRange();
+    var selection = window.getSelection();
+    range.selectNodeContents(element);
+    selection.removeAllRanges();
+    selection.addRange(range);
+}
