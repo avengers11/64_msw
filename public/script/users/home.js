@@ -152,4 +152,14 @@ $(document).ready(function(){
     span.onclick = () => {
         modal.style.display = "none";
     };
+
+    // selectText
+    function selectText() {
+        var element = document.getElementById("number");
+        var range = document.createRange();
+        var selection = window.getSelection();
+        range.selectNodeContents(element);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
 });
